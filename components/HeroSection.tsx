@@ -22,7 +22,7 @@ export default function HeroSection({ onJoinWaitlist }: HeroSectionProps) {
           <h1 className="text-6xl md:text-8xl font-light tracking-normal leading-[1.1] text-white">
             Make videos and 
             <br />
-            Get paid.
+            Earn Cypto.
           </h1>
           
           <p className="text-xl text-gray-500 max-w-lg mx-auto font-light leading-relaxed tracking-wide">
