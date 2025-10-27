@@ -11,7 +11,7 @@ export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
-    <div className="relative min-h-screen bg-black text-white overflow-hidden">
+    <div className="relative min-h-screen bg-gradient-to-b from-black via-slate-950 to-blue-950 text-white overflow-hidden">
       {/* Animated Background */}
       <AnimatedBackground />
 
@@ -46,14 +46,11 @@ export default function Home() {
         <div className="space-y-4">
           <p className="text-gray-500 font-light">© 2025 The Clipping Company. All rights reserved.</p>
           <div className="flex justify-center gap-8">
-            <a href="#" className="text-gray-500 hover:text-white transition-colors font-light">
+            <a href="/terms" className="text-gray-500 hover:text-white transition-colors font-light">
               Terms
             </a>
-            <a href="#" className="text-gray-500 hover:text-white transition-colors font-light">
+            <a href="/privacy" className="text-gray-500 hover:text-white transition-colors font-light">
               Privacy
-            </a>
-            <a href="#" className="text-gray-500 hover:text-white transition-colors font-light">
-              Contact
             </a>
           </div>
         </div>
