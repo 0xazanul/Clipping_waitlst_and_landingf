@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import HeroSection from "@/components/HeroSection";
 import HowItWorks from "@/components/HowItWorks";
 import WaitlistModal from "@/components/WaitlistModal";
@@ -12,7 +12,6 @@ import { getSupabase, isSupabaseConfigured, getWaitlistCount } from "@/lib/supab
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [waitlistCount, setWaitlistCount] = useState<number | null>(null);
-  const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     const fetchWaitlistCount = async () => {
@@ -52,42 +51,8 @@ export default function Home() {
 
   return (
     <div className="relative min-h-screen bg-gradient-to-b from-black via-slate-950 to-blue-950 text-white overflow-hidden">
-      {/* Background Video */}
-      <div className="fixed inset-0 w-full h-full z-0">
-        <video
-          ref={videoRef}
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="auto"
-          className="w-full h-full object-cover opacity-20 transition-opacity duration-300"
-          style={{
-            transform: 'scale(1.02)',
-          }}
-          onTimeUpdate={(e) => {
-            // Seamless loop trick - restart slightly before end
-            const video = e.currentTarget;
-            if (video.duration - video.currentTime < 0.1) {
-              video.currentTime = 0;
-            }
-          }}
-          onEnded={(e) => {
-            // Force immediate restart on end
-            e.currentTarget.currentTime = 0;
-            e.currentTarget.play();
-          }}
-        >
-          <source src="/bg/background.mp4" type="video/mp4" />
-        </video>
-        {/* Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-slate-950/80 to-blue-950/90" />
-      </div>
-
-      {/* Content */}
-      <div className="relative z-10">
-        {/* Smooth Scroll */}
-        <SmoothScroll />
+      {/* Smooth Scroll */}
+      <SmoothScroll />
       
       {/* Sticky Banner */}
       {waitlistCount !== null && waitlistCount > 0 && (
@@ -165,7 +130,6 @@ export default function Home() {
           </p>
         </div>
       </footer>
-      </div>
     </div>
   );
 }
