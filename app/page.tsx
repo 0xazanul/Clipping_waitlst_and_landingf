@@ -133,7 +133,7 @@ export default function Home() {
         <div className="max-w-4xl mx-auto px-6 py-20 flex flex-col items-center gap-10">
           {/* Discord */}
           <a
-            href="https://discord.gg/your-invite-link"
+            href="https://discord.gg/RACEATtXTc"
             target="_blank"
             rel="noopener noreferrer"
             className="group inline-flex items-center gap-2.5 text-gray-400 hover:text-white transition-colors duration-200"
