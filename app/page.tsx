@@ -1,10 +1,10 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import AnimatedBackground from "@/components/AnimatedBackground";
 import HeroSection from "@/components/HeroSection";
 import HowItWorks from "@/components/HowItWorks";
 import WaitlistModal from "@/components/WaitlistModal";
+import SmoothScroll from "@/components/SmoothScroll";
 import { StickyBanner } from "@/components/ui/sticky-banner";
 import { Toaster } from "sonner";
 import { getSupabase, isSupabaseConfigured } from "@/lib/supabase";
@@ -59,14 +59,14 @@ export default function Home() {
 
   return (
     <div className="relative min-h-screen bg-gradient-to-b from-black via-slate-950 to-blue-950 text-white overflow-hidden">
-      {/* Animated Background */}
-      <AnimatedBackground />
-
+      {/* Smooth Scroll */}
+      <SmoothScroll />
+      
       {/* Sticky Banner */}
       {waitlistCount !== null && waitlistCount > 0 && (
         <StickyBanner 
           hideOnScroll={true}
-          className="bg-gradient-to-b from-black/80 via-slate-950/80 to-blue-950/80 backdrop-blur-xl border-b border-white/10"
+          className="bg-black/90 backdrop-blur-xl border-b border-white/10"
         >
           <p className="text-sm text-gray-300 font-light tracking-wide">
             <span className="font-medium text-white">{waitlistCount.toLocaleString()}</span>

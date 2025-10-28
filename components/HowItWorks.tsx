@@ -43,10 +43,10 @@ export default function HowItWorks() {
       <div className="max-w-4xl mx-auto relative">
         {/* Section Header */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
+          viewport={{ once: true, amount: 0.5 }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
           className="text-center mb-24"
         >
           <h2 className="text-4xl md:text-5xl font-light tracking-normal text-white mb-4">
@@ -79,10 +79,10 @@ export default function HowItWorks() {
               return (
                 <motion.div
                   key={step.id}
-                  initial={{ opacity: 0, x: isEven ? -50 : 50 }}
+                  initial={{ opacity: 0, x: isEven ? -30 : 30 }}
                   whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true, margin: "-100px" }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  viewport={{ once: true, margin: "-50px", amount: 0.3 }}
+                  transition={{ duration: 0.4, delay: index * 0.05, ease: "easeOut" }}
                   className="relative"
                 >
                   <div className={`flex flex-col md:flex-row items-start md:items-center gap-6 ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'}`}>

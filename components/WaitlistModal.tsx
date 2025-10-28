@@ -111,7 +111,7 @@ export default function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="bg-black/95 backdrop-blur-xl border border-white/10 text-white sm:max-w-md">
+      <DialogContent className="bg-gradient-to-b from-black via-slate-950 to-blue-950/50 backdrop-blur-xl border border-white/20 text-white sm:max-w-md">
         <AnimatePresence mode="wait">
           {isSuccess ? (
             <motion.div
@@ -194,7 +194,7 @@ export default function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
                     value={formData.name}
                     onChange={handleChange}
                     required
-                    className="bg-white/5 border-white/10 text-white placeholder:text-gray-600 focus:border-white/20 focus:ring-0 h-11 tracking-wide"
+                    className="bg-white/5 border-white/20 text-white placeholder:text-gray-500 focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/20 h-11 tracking-wide transition-all"
                   />
                 </div>
 
@@ -211,7 +211,7 @@ export default function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="bg-white/5 border-white/10 text-white placeholder:text-gray-600 focus:border-white/20 focus:ring-0 h-11 tracking-wide"
+                    className="bg-white/5 border-white/20 text-white placeholder:text-gray-500 focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/20 h-11 tracking-wide transition-all"
                   />
                 </div>
 
@@ -228,7 +228,7 @@ export default function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
                     value={formData.portfolio}
                     onChange={handleChange}
                     required
-                    className="bg-white/5 border-white/10 text-white placeholder:text-gray-600 focus:border-white/20 focus:ring-0 h-11 tracking-wide"
+                    className="bg-white/5 border-white/20 text-white placeholder:text-gray-500 focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/20 h-11 tracking-wide transition-all"
                   />
                 </div>
 
@@ -244,7 +244,7 @@ export default function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
                     value={formData.description}
                     onChange={(e) => setFormData(prev => ({ ...prev, description: e.target.value }))}
                     rows={3}
-                    className="w-full bg-white/5 border border-white/10 text-white placeholder:text-gray-600 focus:border-white/20 focus:ring-0 px-3 py-2 tracking-wide resize-none"
+                    className="w-full bg-white/5 border border-white/20 text-white placeholder:text-gray-500 focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/20 px-3 py-2 tracking-wide resize-none rounded-md transition-all"
                   />
                 </div>
 
