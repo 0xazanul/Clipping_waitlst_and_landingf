@@ -63,7 +63,8 @@ export default function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
       const result = await addToWaitlist(
         formData.name.trim(),
         formData.email.trim(),
-        formData.portfolio.trim()
+        formData.portfolio.trim(),
+        formData.description.trim() || undefined
       );
 
       if (!result.success) {

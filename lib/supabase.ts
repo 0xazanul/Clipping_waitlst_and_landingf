@@ -63,7 +63,8 @@ export async function getWaitlistCount(): Promise<number> {
 export async function addToWaitlist(
   name: string,
   email: string,
-  portfolio: string
+  portfolio: string,
+  description?: string
 ): Promise<{ success: boolean; error?: string; message?: string }> {
   const supabase = getSupabase();
   if (!supabase) {
@@ -86,6 +87,7 @@ export async function addToWaitlist(
       p_name: name,
       p_email: email,
       p_portfolio: portfolio,
+      p_description: description || null,
       p_ip_address: ipAddress,
     });
 
