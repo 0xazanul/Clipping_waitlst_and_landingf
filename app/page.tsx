@@ -7,7 +7,7 @@ import WaitlistModal from "@/components/WaitlistModal";
 import SmoothScroll from "@/components/SmoothScroll";
 import { StickyBanner } from "@/components/ui/sticky-banner";
 import { Toaster } from "sonner";
-import { getSupabase, isSupabaseConfigured } from "@/lib/supabase";
+import { getSupabase, isSupabaseConfigured, getWaitlistCount } from "@/lib/supabase";
 
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -19,18 +19,10 @@ export default function Home() {
         setWaitlistCount(0);
         return;
       }
-      
-      const supabase = getSupabase();
-      if (!supabase) {
-        setWaitlistCount(0);
-        return;
-      }
 
-      const { count } = await supabase
-        .from("waitlist")
-        .select("*", { count: "exact", head: true });
-
-      setWaitlistCount(count || 0);
+      // Use secure RPC function instead of direct table access
+      const count = await getWaitlistCount();
+      setWaitlistCount(count);
     };
 
     fetchWaitlistCount();
@@ -66,11 +58,11 @@ export default function Home() {
       {waitlistCount !== null && waitlistCount > 0 && (
         <StickyBanner 
           hideOnScroll={true}
-          className="bg-black/90 backdrop-blur-xl border-b border-white/10"
+          className="bg-black/90 backdrop-blur-xl border-b border-white/10 z-50"
         >
           <p className="text-sm text-gray-300 font-light tracking-wide">
             <span className="font-medium text-white">{waitlistCount.toLocaleString()}</span>
-            {" "}{waitlistCount === 1 ? "person" : "people"} already joined — be the next
+            {" "}{waitlistCount === 1 ? "person" : "people"} already joined — <span className="text-blue-400">be the next</span>
           </p>
         </StickyBanner>
       )}

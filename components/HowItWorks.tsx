@@ -2,7 +2,7 @@
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Search, Upload, TrendingUp, Coins } from "lucide-react";
-import { useRef } from "react";
+import { useRef, memo } from "react";
 
 const steps = [
   {
@@ -31,7 +31,7 @@ const steps = [
   },
 ];
 
-export default function HowItWorks() {
+function HowItWorks() {
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -43,10 +43,10 @@ export default function HowItWorks() {
       <div className="max-w-4xl mx-auto relative">
         {/* Section Header */}
         <motion.div
-          initial={{ opacity: 0, y: 10 }}
+          initial={{ opacity: 0, y: 8 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.5 }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
+          transition={{ duration: 0.3, ease: "easeOut" }}
           className="text-center mb-24"
         >
           <h2 className="text-4xl md:text-5xl font-light tracking-normal text-white mb-4">
@@ -79,10 +79,10 @@ export default function HowItWorks() {
               return (
                 <motion.div
                   key={step.id}
-                  initial={{ opacity: 0, x: isEven ? -30 : 30 }}
+                  initial={{ opacity: 0, x: isEven ? -20 : 20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true, margin: "-50px", amount: 0.3 }}
-                  transition={{ duration: 0.4, delay: index * 0.05, ease: "easeOut" }}
+                  transition={{ duration: 0.3, delay: index * 0.03, ease: "easeOut" }}
                   className="relative"
                 >
                   <div className={`flex flex-col md:flex-row items-start md:items-center gap-6 ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'}`}>
@@ -101,8 +101,8 @@ export default function HowItWorks() {
 
                     {/* Icon - centered on timeline */}
                     <motion.div
-                      whileHover={{ scale: 1.1 }}
-                      transition={{ type: "spring", stiffness: 300 }}
+                      whileHover={{ scale: 1.05 }}
+                      transition={{ duration: 0.2 }}
                       className="absolute left-6 md:left-1/2 md:-translate-x-1/2 w-12 h-12 bg-white/5 border border-white/10 flex items-center justify-center"
                     >
                       <Icon className="w-6 h-6 text-white/70" strokeWidth={1.5} />
@@ -120,3 +120,5 @@ export default function HowItWorks() {
     </section>
   );
 }
+
+export default memo(HowItWorks);

@@ -137,14 +137,29 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
-  /* GPU acceleration for animations */
-  [class*="motion-"] {
-    will-change: transform, opacity;
+  /* GPU acceleration for all animated elements */
+  [class*="motion-"],
+  [data-framer-component-type],
+  button,
+  a {
+    will-change: auto;
     transform: translateZ(0);
+    backface-visibility: hidden;
   }
 
   /* Smooth scrolling performance */
   html {
     scroll-behavior: auto;
+  }
+
+  /* Optimize backdrop blur */
+  [class*="backdrop-blur"] {
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+
+  /* Improve transition performance */
+  * {
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   }
 }

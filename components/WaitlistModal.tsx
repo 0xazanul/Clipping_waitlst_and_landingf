@@ -10,7 +10,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
-import { getSupabase, isSupabaseConfigured } from "@/lib/supabase";
+import { isSupabaseConfigured, addToWaitlist } from "@/lib/supabase";
 import { toast } from "sonner";
 import { Check } from "lucide-react";
 
@@ -59,29 +59,15 @@ export default function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
     setIsSubmitting(true);
 
     try {
-      const supabase = getSupabase();
-      if (!supabase) {
-        toast.error("Database connection not available");
-        return;
-      }
+      // Use secure RPC function with server-side validation and rate limiting
+      const result = await addToWaitlist(
+        formData.name.trim(),
+        formData.email.trim(),
+        formData.portfolio.trim()
+      );
 
-      const { error } = await supabase.from("waitlist").insert([
-        {
-          name: formData.name.trim(),
-          email: formData.email.trim().toLowerCase(),
-          portfolio: formData.portfolio.trim(),
-          description: formData.description.trim() || null,
-        },
-      ]);
-
-      if (error) {
-        // Check for unique constraint violation (duplicate email)
-        if (error.code === "23505") {
-          toast.error("This email is already on the waitlist!");
-        } else {
-          console.error("Supabase error:", error);
-          toast.error("Something went wrong. Please try again.");
-        }
+      if (!result.success) {
+        toast.error(result.error || "Failed to join waitlist");
         return;
       }
 

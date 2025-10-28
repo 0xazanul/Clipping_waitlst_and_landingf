@@ -1,20 +1,21 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { memo } from "react";
 
 interface HeroSectionProps {
   onJoinWaitlist: () => void;
 }
 
-export default function HeroSection({ onJoinWaitlist }: HeroSectionProps) {
+function HeroSection({ onJoinWaitlist }: HeroSectionProps) {
   return (
     <section className="relative min-h-screen flex items-center justify-center px-6">
       <div className="max-w-4xl mx-auto text-center">
         {/* Headline */}
         <motion.div
-          initial={{ opacity: 0, y: 15 }}
+          initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, ease: "easeOut" }}
+          transition={{ duration: 0.3, ease: "easeOut" }}
           className="space-y-6 mb-8"
         >
           <h1 className="text-6xl md:text-8xl font-light tracking-normal leading-[1.1] text-white">
@@ -32,13 +33,13 @@ export default function HeroSection({ onJoinWaitlist }: HeroSectionProps) {
 
         {/* CTA */}
         <motion.div
-          initial={{ opacity: 0, y: 15 }}
+          initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, delay: 0.15, ease: "easeOut" }}
+          transition={{ duration: 0.3, delay: 0.1, ease: "easeOut" }}
         >
           <button
             onClick={onJoinWaitlist}
-            className="text-white hover:text-gray-300 font-light text-base transition-colors underline underline-offset-4 decoration-white/30 hover:decoration-white/60"
+            className="text-white hover:text-gray-300 font-light text-base transition-colors duration-200 underline underline-offset-4 decoration-white/30 hover:decoration-white/60"
           >
             Join Waitlist →
           </button>
@@ -47,3 +48,5 @@ export default function HeroSection({ onJoinWaitlist }: HeroSectionProps) {
     </section>
   );
 }
+
+export default memo(HeroSection);

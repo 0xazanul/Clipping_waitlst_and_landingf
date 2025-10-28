@@ -40,7 +40,7 @@ const ppEditorial = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "The Clipping Company - Turn Content into Revenue",
+  title: "The Clipping Company",
   description: "Monetize your influence with authentic brand clips. Join creators earning today.",
 };
 
