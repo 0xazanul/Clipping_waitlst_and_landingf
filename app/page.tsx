@@ -5,6 +5,7 @@ import HeroSection from "@/components/HeroSection";
 import HowItWorks from "@/components/HowItWorks";
 import WaitlistModal from "@/components/WaitlistModal";
 import SmoothScroll from "@/components/SmoothScroll";
+import HeroBgAnimation from "@/components/HeroBgAnimation";
 import { StickyBanner } from "@/components/ui/sticky-banner";
 import { Toaster } from "sonner";
 import { getSupabase, isSupabaseConfigured, getWaitlistCount } from "@/lib/supabase";
@@ -51,12 +52,19 @@ export default function Home() {
 
   return (
     <div className="relative min-h-screen bg-gradient-to-b from-black via-slate-950 to-blue-950 text-white overflow-hidden">
-      {/* Smooth Scroll */}
-      <SmoothScroll />
-      
-      {/* Sticky Banner */}
-      {waitlistCount !== null && waitlistCount > 0 && (
-        <StickyBanner 
+      {/* Animated Background */}
+      <div className="fixed inset-0 z-0 opacity-25">
+        <HeroBgAnimation />
+      </div>
+
+      {/* Content Layer */}
+      <div className="relative z-10">
+        {/* Smooth Scroll */}
+        <SmoothScroll />
+        
+        {/* Sticky Banner */}
+        {waitlistCount !== null && waitlistCount > 0 && (
+          <StickyBanner 
           hideOnScroll={true}
           className="bg-black/90 backdrop-blur-xl border-b border-white/10 z-50"
         >
@@ -130,6 +138,7 @@ export default function Home() {
           </p>
         </div>
       </footer>
+      </div>
     </div>
   );
 }
