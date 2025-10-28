@@ -294,23 +294,6 @@ export default function HeroBgAnimation() {
                 </motion.div>
               ))}
             </div>
-
-            {/* Share ripple effect */}
-            <motion.div
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none"
-              animate={{
-                scale: [0, 2],
-                opacity: [0.5, 0],
-              }}
-              transition={{
-                duration: 2,
-                repeat: Infinity,
-                delay: 6,
-                ease: "easeOut",
-              }}
-            >
-              <div className="w-24 h-24 md:w-32 md:h-32 border-2 border-blue-400 rounded-full" />
-            </motion.div>
           </motion.div>
         </div>
       </div>
