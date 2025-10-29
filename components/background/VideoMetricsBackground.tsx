@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useRealtimeWaitlist } from "@/hooks/useRealtimeWaitlist";
 
 interface VideoMetricsBackgroundProps {
   onJoinWaitlist?: () => void;
@@ -11,6 +12,7 @@ export default function VideoMetricsBackground({ onJoinWaitlist }: VideoMetricsB
   const [likes, setLikes] = useState(342);
   const [subscribers, setSubscribers] = useState(1850);
   const [earnings, setEarnings] = useState(47.5);
+  const waitlistCount = useRealtimeWaitlist();
 
   useEffect(() => {
     const animate = () => {
@@ -47,19 +49,11 @@ export default function VideoMetricsBackground({ onJoinWaitlist }: VideoMetricsB
                 Earn Crypto.
               </h1>
               
-              <p className="text-[0.875rem] leading-[1.5] sm:text-[1rem] md:text-[1.125rem] lg:text-[1.25rem] text-gray-400/90 font-light mb-4 sm:mb-5 md:mb-6 px-4 sm:px-6">
+              <p className="text-[0.875rem] leading-[1.5] sm:text-[1rem] md:text-[1.125rem] lg:text-[1.25rem] text-gray-400/90 font-light px-4 sm:px-6">
                 Post brand content on your channel.
                 <br />
                 Hit view targets. Earn money.
               </p>
-
-              <button
-                onClick={onJoinWaitlist}
-                className="relative z-50 inline-block text-white hover:text-gray-300 font-light text-[0.875rem] sm:text-[1rem] md:text-[1.125rem] transition-all duration-300 underline underline-offset-4 decoration-white/40 hover:decoration-white/70 hover:scale-105 active:scale-95 cursor-pointer bg-transparent border-0 outline-none"
-                style={{ pointerEvents: 'auto' }}
-              >
-                Join Waitlist →
-              </button>
             </div>
 
             <div className="absolute bottom-1.5 right-1.5 sm:bottom-2 sm:right-2 md:bottom-3 md:right-3 bg-black/80 px-1.5 py-0.5 md:px-2 md:py-1 rounded text-[9px] sm:text-[10px] md:text-xs font-semibold text-white pointer-events-none">
@@ -125,6 +119,21 @@ export default function VideoMetricsBackground({ onJoinWaitlist }: VideoMetricsB
                 <span className="text-sm sm:text-base md:text-lg font-bold text-white tabular-nums">${earnings.toFixed(1)}</span>
                 <span className="text-[0.625rem] sm:text-[0.6875rem] md:text-[0.75rem] text-green-400 font-medium mt-0.5">+${(earnings * 0.18).toFixed(1)}</span>
               </div>
+            </div>
+
+            <div className="px-4 sm:px-5 md:px-6 pt-4 sm:pt-5 md:pt-6 pb-5 sm:pb-6 md:pb-7">
+              <button
+                onClick={onJoinWaitlist}
+                className="w-full bg-white/95 hover:bg-white text-black font-medium text-sm sm:text-base md:text-lg py-3 sm:py-3.5 rounded-lg transition-all duration-200 hover:scale-[1.01] active:scale-[0.99]"
+              >
+                Join Waitlist →
+              </button>
+              
+              {waitlistCount !== null && waitlistCount > 0 && (
+                <p className="text-center mt-3 sm:mt-3.5 md:mt-4 text-[0.6875rem] sm:text-xs md:text-sm text-gray-400/80 font-light">
+                  <span className="font-medium text-white">{waitlistCount.toLocaleString()}</span> {waitlistCount === 1 ? "person" : "people"} already joined
+                </p>
+              )}
             </div>
           </div>
         </div>

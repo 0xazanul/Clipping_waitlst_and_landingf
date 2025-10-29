@@ -4,14 +4,11 @@ import { useState } from "react";
 import HeroSection from "@/components/HeroSection";
 import HowItWorks from "@/components/HowItWorks";
 import WaitlistModal from "@/components/WaitlistModal";
-import { StickyBanner } from "@/components/ui/sticky-banner";
 import { Toaster } from "sonner";
-import { useRealtimeWaitlist } from "@/hooks/useRealtimeWaitlist";
 import VideoMetricsBackground from "@/components/background/VideoMetricsBackground";
 
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const waitlistCount = useRealtimeWaitlist();
 
   return (
     <div className="relative min-h-screen text-white">
@@ -19,18 +16,6 @@ export default function Home() {
       
       <div className="relative">
         
-        {waitlistCount !== null && waitlistCount > 0 && (
-          <StickyBanner 
-          hideOnScroll={true}
-          className="bg-black/90 backdrop-blur-xl border-b border-white/10 z-50"
-        >
-          <p className="text-[11px] sm:text-xs md:text-sm text-gray-300 font-light tracking-wide px-2 sm:px-4 text-center">
-            <span className="font-medium text-white">{waitlistCount.toLocaleString()}</span>
-            {" "}{waitlistCount === 1 ? "person" : "people"} already joined — <span className="text-blue-400">be the next</span>
-          </p>
-        </StickyBanner>
-      )}
-
       <Toaster
         position="top-center"
         theme="dark"
