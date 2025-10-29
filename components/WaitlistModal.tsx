@@ -103,52 +103,129 @@ export default function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
           {isSuccess ? (
             <motion.div
               key="success"
-              initial={{ opacity: 0, scale: 0.9 }}
+              initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.9 }}
-              transition={{ duration: 0.3, ease: "easeOut" }}
-              className="flex flex-col items-center justify-center py-12"
+              exit={{ opacity: 0, scale: 0.95 }}
+              transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+              className="flex flex-col items-center justify-center py-16"
             >
+              {/* Animated Check Circle */}
               <motion.div
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
-                transition={{ delay: 0.1, type: "spring", stiffness: 200, damping: 15 }}
-                className="relative mb-6"
+                transition={{ 
+                  delay: 0.1, 
+                  type: "spring", 
+                  stiffness: 260, 
+                  damping: 20 
+                }}
+                className="relative mb-8"
               >
+                {/* Outer Glow Rings */}
+                <motion.div
+                  initial={{ scale: 0.5, opacity: 0 }}
+                  animate={{ 
+                    scale: [0.5, 1.3, 1], 
+                    opacity: [0, 0.6, 0] 
+                  }}
+                  transition={{ 
+                    delay: 0.15, 
+                    duration: 1.2,
+                    times: [0, 0.5, 1],
+                    ease: "easeOut"
+                  }}
+                  className="absolute -inset-8 bg-gradient-to-r from-blue-500/30 via-purple-500/30 to-pink-500/30 rounded-full blur-2xl"
+                />
+                
+                {/* Inner Circle */}
                 <motion.div
                   initial={{ scale: 0.8, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
-                  transition={{ delay: 0.2, duration: 0.5 }}
-                  className="absolute inset-0 bg-white/10 rounded-full blur-2xl"
-                />
-                <div className="relative w-20 h-20 rounded-full bg-white/5 border border-white/20 flex items-center justify-center">
-                  <motion.div
-                    initial={{ pathLength: 0, opacity: 0 }}
-                    animate={{ pathLength: 1, opacity: 1 }}
-                    transition={{ delay: 0.3, duration: 0.5, ease: "easeOut" }}
+                  transition={{ delay: 0.2, duration: 0.5, ease: "easeOut" }}
+                  className="relative w-24 h-24 rounded-full bg-gradient-to-br from-white/10 to-white/5 border-2 border-white/30 flex items-center justify-center shadow-2xl backdrop-blur-sm"
+                >
+                  {/* Checkmark with draw animation */}
+                  <motion.svg
+                    className="w-12 h-12 text-white"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.3, duration: 0.3 }}
                   >
-                    <Check className="w-10 h-10 text-white" strokeWidth={2.5} />
-                  </motion.div>
-                </div>
+                    <motion.path
+                      d="M5 13l4 4L19 7"
+                      stroke="currentColor"
+                      strokeWidth={3}
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      initial={{ pathLength: 0 }}
+                      animate={{ pathLength: 1 }}
+                      transition={{ 
+                        delay: 0.4, 
+                        duration: 0.6, 
+                        ease: [0.16, 1, 0.3, 1] 
+                      }}
+                    />
+                  </motion.svg>
+                </motion.div>
               </motion.div>
               
+              {/* Success Text */}
               <motion.h3
-                initial={{ opacity: 0, y: 10 }}
+                initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4, duration: 0.4 }}
-                className="text-2xl font-light tracking-normal text-white mb-2"
+                transition={{ 
+                  delay: 0.6, 
+                  duration: 0.5,
+                  ease: [0.16, 1, 0.3, 1]
+                }}
+                className="text-3xl font-light tracking-tight text-white mb-3"
               >
-                You're In
+                You're All Set!
               </motion.h3>
               
               <motion.p
-                initial={{ opacity: 0, y: 10 }}
+                initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5, duration: 0.4 }}
-                className="text-gray-400 text-sm font-light tracking-wide text-center"
+                transition={{ 
+                  delay: 0.7, 
+                  duration: 0.5,
+                  ease: [0.16, 1, 0.3, 1]
+                }}
+                className="text-gray-400 text-base font-light tracking-wide text-center max-w-xs"
               >
-                We'll be in touch soon
+                We'll notify you as soon as we launch
               </motion.p>
+              
+              {/* Subtle particles effect */}
+              {[...Array(6)].map((_, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ 
+                    opacity: 0, 
+                    scale: 0,
+                    x: 0,
+                    y: 0
+                  }}
+                  animate={{ 
+                    opacity: [0, 1, 0],
+                    scale: [0, 1, 0],
+                    x: Math.cos(i * 60 * Math.PI / 180) * 80,
+                    y: Math.sin(i * 60 * Math.PI / 180) * 80
+                  }}
+                  transition={{ 
+                    delay: 0.3 + i * 0.05, 
+                    duration: 1.2,
+                    ease: "easeOut"
+                  }}
+                  className="absolute w-1.5 h-1.5 bg-white/60 rounded-full"
+                  style={{
+                    top: '40%',
+                    left: '50%'
+                  }}
+                />
+              ))}
             </motion.div>
           ) : (
             <motion.div

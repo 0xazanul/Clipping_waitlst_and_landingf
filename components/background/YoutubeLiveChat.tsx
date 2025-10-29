@@ -65,68 +65,68 @@ export default function YoutubeLiveChat() {
 
   return (
     <div 
-      className="pointer-events-none"
+      className="pointer-events-none absolute"
       style={{ 
-        position: 'absolute',
         top: '50vh',
-        left: 'calc(50% + min(95vw, 80rem) / 2 + 20px)',
-        width: '320px',
+        left: '50%',
+        marginLeft: 'calc(min(95vw, 80rem) / 2 + 1rem)',
+        transform: 'translateY(-50%)',
         zIndex: 0,
-        marginTop: 'calc(min(95vw, 80rem) * 9 / 16 / -2)'
+        width: 'min(22vw, 20rem)',
       }}
     >
-      <div 
-        className="relative bg-black/20 backdrop-blur-sm rounded-xl overflow-hidden shadow-2xl border border-white/5"
-        style={{
-          height: 'calc(min(95vw, 80rem) * 9 / 16 + 190px)'
-        }}
-      >
-        {/* Chat Header */}
-        <div className="bg-black/40 px-4 py-2.5 border-b border-white/5">
-          <div className="flex items-center gap-2">
-            <span className="text-white text-xs font-medium tracking-wide">Live Chat</span>
-            <div className="ml-auto flex items-center gap-1.5">
-              <div className="w-1.5 h-1.5 bg-red-500 rounded-full animate-pulse"></div>
-              <span className="text-slate-400 text-[10px]">LIVE</span>
+        <div 
+          className="relative bg-black/20 backdrop-blur-sm rounded-xl overflow-hidden shadow-2xl border border-white/5 flex flex-col"
+          style={{
+            height: 'min(70vh, 45rem)',
+          }}
+        >
+          {/* Chat Header */}
+          <div className="bg-black/40 px-4 py-2.5 border-b border-white/5 flex-shrink-0">
+            <div className="flex items-center gap-2">
+              <span className="text-white text-xs font-medium tracking-wide">Live Chat</span>
+              <div className="ml-auto flex items-center gap-1.5">
+                <div className="w-1.5 h-1.5 bg-red-500 rounded-full animate-pulse"></div>
+                <span className="text-slate-400 text-[10px]">LIVE</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Chat Messages - scroll from bottom */}
+          <div className="flex-1 overflow-hidden">
+            <div className="flex flex-col-reverse gap-0 p-3 h-full overflow-hidden">
+              {messages.map((msg, index) => (
+                <div
+                  key={msg.id}
+                  className="animate-slide-in-bottom opacity-0 py-1.5 transition-all duration-300"
+                  style={{
+                    animation: `slideInBottom 0.4s ease-out forwards`,
+                  }}
+                >
+                  <div className="flex items-start gap-2">
+                    <div 
+                      className="w-5 h-5 rounded-full flex-shrink-0 flex items-center justify-center text-white text-[10px] font-bold"
+                      style={{ backgroundColor: msg.color }}
+                    >
+                      {msg.username[0]}
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <span 
+                        className="font-semibold text-[11px] mr-1.5"
+                        style={{ color: msg.color }}
+                      >
+                        {msg.username}
+                      </span>
+                      <span className="text-white/90 text-[11px] leading-snug">
+                        {msg.message}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
-
-        {/* Chat Messages - scroll from bottom */}
-        <div className="absolute inset-x-0 bottom-0 top-[41px] overflow-hidden">
-          <div className="flex flex-col-reverse gap-0 p-3 h-full overflow-hidden">
-            {messages.map((msg, index) => (
-              <div
-                key={msg.id}
-                className="animate-slide-in-bottom opacity-0 py-1.5"
-                style={{
-                  animation: `slideInBottom 0.4s ease-out forwards`,
-                }}
-              >
-                <div className="flex items-start gap-2">
-                  <div 
-                    className="w-5 h-5 rounded-full flex-shrink-0 flex items-center justify-center text-white text-[10px] font-bold"
-                    style={{ backgroundColor: msg.color }}
-                  >
-                    {msg.username[0]}
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <span 
-                      className="font-semibold text-[11px] mr-1.5"
-                      style={{ color: msg.color }}
-                    >
-                      {msg.username}
-                    </span>
-                    <span className="text-white/90 text-[11px] leading-snug">
-                      {msg.message}
-                    </span>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
     </div>
   );
 }
