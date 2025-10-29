@@ -15,8 +15,17 @@ export default function VideoMetricsBackground() {
   }, []);
 
   return (
-    <div className="w-full h-full pointer-events-none">
-      <div className="fixed top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 w-[95vw] max-w-5xl pointer-events-none">
+    <div 
+      className="fixed-youtube-bg pointer-events-none"
+      style={{ 
+        position: 'fixed',
+        top: '50%', 
+        left: '50%', 
+        width: 'min(95vw, 80rem)',
+        zIndex: 0,
+        transform: 'translate(-50%, -50%)'
+      }}
+    >
         <div className="relative bg-black/60 backdrop-blur-sm rounded-xl overflow-hidden shadow-2xl">
           <div className="relative aspect-video bg-gradient-to-br from-slate-800 via-slate-700 to-slate-900">
             <div className="absolute inset-0 bg-gradient-to-tr from-purple-900/30 via-blue-900/20 to-cyan-900/30" />
@@ -44,7 +53,6 @@ export default function VideoMetricsBackground() {
             </div>
           </div>
         </div>
-      </div>
     </div>
   );
 }

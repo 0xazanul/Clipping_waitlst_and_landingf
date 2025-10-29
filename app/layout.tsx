@@ -53,18 +53,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${ppEditorial.variable} font-sans antialiased bg-slate-950`}>
-        {/* Fixed Background Animation - Global and truly fixed to viewport */}
-        <div
-          className="fixed inset-0 z-0 pointer-events-none"
-          style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, width: '100vw', height: '100vh' }}
-        >
-          <VideoMetricsBackground />
-        </div>
+        {/* Fixed background directly in body - no ancestor can trap it */}
+        <VideoMetricsBackground />
         
         {/* Gradient overlay - LIGHTER to show animation colors */}
         <div
           className="fixed inset-0 z-[1] bg-gradient-to-b from-black/30 via-slate-950/40 to-blue-950/40 pointer-events-none"
-          style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, width: '100vw', height: '100vh' }}
         ></div>
 
         {/* Content rendered over the background */}
