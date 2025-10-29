@@ -1,66 +1,21 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import HeroSection from "@/components/HeroSection";
 import HowItWorks from "@/components/HowItWorks";
 import WaitlistModal from "@/components/WaitlistModal";
-import SmoothScroll from "@/components/SmoothScroll";
-import HeroBgAnimation from "@/components/HeroBgAnimation";
 import { StickyBanner } from "@/components/ui/sticky-banner";
 import { Toaster } from "sonner";
-import { getSupabase, isSupabaseConfigured, getWaitlistCount } from "@/lib/supabase";
+import { useRealtimeWaitlist } from "@/hooks/useRealtimeWaitlist";
 
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [waitlistCount, setWaitlistCount] = useState<number | null>(null);
-
-  useEffect(() => {
-    const fetchWaitlistCount = async () => {
-      if (!isSupabaseConfigured()) {
-        setWaitlistCount(0);
-        return;
-      }
-
-      // Use secure RPC function instead of direct table access
-      const count = await getWaitlistCount();
-      setWaitlistCount(count);
-    };
-
-    fetchWaitlistCount();
-
-    // Set up real-time subscription
-    if (isSupabaseConfigured()) {
-      const supabase = getSupabase();
-      if (supabase) {
-        const channel = supabase
-          .channel("waitlist-banner")
-          .on(
-            "postgres_changes",
-            { event: "*", schema: "public", table: "waitlist" },
-            () => {
-              fetchWaitlistCount();
-            }
-          )
-          .subscribe();
-
-        return () => {
-          supabase.removeChannel(channel);
-        };
-      }
-    }
-  }, []);
+  const waitlistCount = useRealtimeWaitlist();
 
   return (
-    <div className="relative min-h-screen bg-gradient-to-b from-black via-slate-950 to-blue-950 text-white overflow-hidden">
-      {/* Animated Background */}
-      <div className="fixed inset-0 z-0 opacity-25">
-        <HeroBgAnimation />
-      </div>
-
+    <div className="relative min-h-screen text-white overflow-x-hidden">
       {/* Content Layer */}
       <div className="relative z-10">
-        {/* Smooth Scroll */}
-        <SmoothScroll />
         
         {/* Sticky Banner */}
         {waitlistCount !== null && waitlistCount > 0 && (

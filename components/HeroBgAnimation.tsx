@@ -78,7 +78,7 @@ export default function HeroBgAnimation() {
   }, []);
 
   return (
-    <div className="absolute inset-0 w-full h-full overflow-hidden">
+    <div className="w-full h-full relative bg-slate-900">
       {/* Subtle grain overlay */}
       <div className="absolute inset-0 opacity-[0.03] mix-blend-overlay pointer-events-none">
         <svg className="w-full h-full">
@@ -91,7 +91,7 @@ export default function HeroBgAnimation() {
 
       {/* Ambient glows */}
       <motion.div
-        className="absolute top-1/4 left-1/4 w-64 h-64 md:w-96 md:h-96 bg-blue-500/10 rounded-full blur-3xl"
+        className="absolute top-1/4 left-1/4 w-64 h-64 md:w-96 md:h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"
         animate={{
           scale: [1, 1.2, 1],
           opacity: [0.3, 0.5, 0.3],
@@ -103,27 +103,12 @@ export default function HeroBgAnimation() {
         }}
       />
 
-      {/* Main content - Full screen responsive */}
-      <div className="absolute inset-0 flex items-center justify-center">
+      {/* Main content */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
         <div className="w-full h-full flex items-center justify-center px-4 py-8">
-          <motion.div
-            className="relative w-full h-full flex items-center justify-center"
-            initial={{ scale: 0.95, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 1, ease: "easeOut" }}
-          >
+          <div className="relative w-full h-full flex items-center justify-center">
             {/* Video Card */}
-            <motion.div
-              className="relative w-full max-w-6xl mx-auto bg-black/60 backdrop-blur-sm rounded-xl overflow-hidden shadow-2xl"
-              animate={{
-                y: [0, -10, 0],
-              }}
-              transition={{
-                duration: 11,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-            >
+            <div className="relative w-full max-w-6xl mx-auto bg-black/60 backdrop-blur-sm rounded-xl overflow-hidden shadow-2xl">
               {/* Video Thumbnail */}
               <div className="relative aspect-video bg-gradient-to-br from-slate-800 via-slate-700 to-slate-900">
                 {/* Realistic video preview background */}
@@ -193,7 +178,7 @@ export default function HeroBgAnimation() {
                   </button>
                 </div>
               </div>
-            </motion.div>
+            </div>
 
             {/* Engagement Metrics - Responsive positioning */}
             <div className="absolute -right-4 sm:-right-8 md:-right-12 lg:-right-16 top-1/2 -translate-y-1/2 space-y-2 md:space-y-3 w-36 sm:w-44 md:w-52 lg:w-56">
@@ -294,7 +279,7 @@ export default function HeroBgAnimation() {
                 </motion.div>
               ))}
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
     </div>
