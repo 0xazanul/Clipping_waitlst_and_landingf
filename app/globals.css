@@ -197,4 +197,16 @@
     /* Animation disabled to prevent transform stacking context */
     animation: none;
   }
+
+  /* YouTube Live Chat Animation */
+  @keyframes slideInBottom {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 }

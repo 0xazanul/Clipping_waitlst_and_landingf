@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import VideoMetricsBackground from "@/components/background/VideoMetricsBackground";
+import YoutubeLiveChat from "@/components/background/YoutubeLiveChat";
 
 const ppEditorial = localFont({
   src: [
@@ -61,8 +62,9 @@ export default function RootLayout({
 
         {/* Content rendered over the background */}
         <div className="relative z-10">
-          {/* Fixed background in hero section - scrolls with content */}
+          {/* YouTube player and chat - scrolls with content */}
           <VideoMetricsBackground />
+          <YoutubeLiveChat />
           {children}
         </div>
       </body>
