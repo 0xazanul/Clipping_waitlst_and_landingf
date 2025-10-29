@@ -53,16 +53,18 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${ppEditorial.variable} font-sans antialiased bg-slate-950`}>
-        {/* Fixed background directly in body - no ancestor can trap it */}
-        <VideoMetricsBackground />
         
-        {/* Gradient overlay - LIGHTER to show animation colors */}
+        {/* Gradient overlay */}
         <div
           className="fixed inset-0 z-[1] bg-gradient-to-b from-black/30 via-slate-950/40 to-blue-950/40 pointer-events-none"
         ></div>
 
         {/* Content rendered over the background */}
-        <div className="relative z-10">{children}</div>
+        <div className="relative z-10">
+          {/* Fixed background in hero section - scrolls with content */}
+          <VideoMetricsBackground />
+          {children}
+        </div>
       </body>
     </html>
   );

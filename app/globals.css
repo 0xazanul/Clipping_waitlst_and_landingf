@@ -113,7 +113,7 @@
 }
 
 @layer base {
-  * {
+  *:not(.fixed-youtube-bg):not(.fixed-youtube-bg *) {
     @apply border-border outline-ring/50;
   }
   body {
@@ -132,7 +132,7 @@
   }
 
   /* Performance optimizations */
-  * {
+  *:not(.fixed-youtube-bg):not(.fixed-youtube-bg *) {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
@@ -154,8 +154,11 @@
   
   /* Ensure fixed background and all descendants don't get GPU transform */
   .fixed-youtube-bg *[class*="motion-"],
-  .fixed-youtube-bg [data-framer-component-type] {
+  .fixed-youtube-bg [data-framer-component-type],
+  .fixed-youtube-bg .yt-avatar,
+  .fixed-youtube-bg * {
     transform: none !important;
+    will-change: auto !important;
   }
 
   /* Smooth scrolling performance */
@@ -170,7 +173,7 @@
   }
 
   /* Improve transition performance */
-  * {
+  *:not(.fixed-youtube-bg):not(.fixed-youtube-bg *) {
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   }
 
@@ -180,9 +183,10 @@
     50% { width: 60%; }
   }
   
+  /* Avatar spin - removed transform to prevent stacking context */
   @keyframes yt-rotate-avatar {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
+    0% { opacity: 1; }
+    100% { opacity: 1; }
   }
 
   .yt-progress {
@@ -190,6 +194,7 @@
   }
 
   .yt-avatar {
-    animation: yt-rotate-avatar 20s linear infinite;
+    /* Animation disabled to prevent transform stacking context */
+    animation: none;
   }
 }
