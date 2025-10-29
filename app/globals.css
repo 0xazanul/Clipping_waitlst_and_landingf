@@ -147,9 +147,15 @@
   }
 
   /* Apply GPU acceleration only to motion elements, not fixed backgrounds */
-  [class*="motion-"]:not(.fixed-youtube-bg):not(.fixed-youtube-bg *),
+  [class*="motion-"]:not(.fixed-youtube-bg):not(.fixed-youtube-bg *):not(.fixed-youtube-bg [class*="motion-"]),
   [data-framer-component-type]:not(.fixed-youtube-bg):not(.fixed-youtube-bg *) {
     transform: translateZ(0);
+  }
+  
+  /* Ensure fixed background and all descendants don't get GPU transform */
+  .fixed-youtube-bg *[class*="motion-"],
+  .fixed-youtube-bg [data-framer-component-type] {
+    transform: none !important;
   }
 
   /* Smooth scrolling performance */
