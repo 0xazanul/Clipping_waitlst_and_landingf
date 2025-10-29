@@ -69,7 +69,7 @@ export default function YoutubeLiveChat() {
       style={{ 
         top: '50vh',
         left: '50%',
-        marginLeft: 'calc(min(95vw, 1000px) / 2 + clamp(0.75rem, 1.5vw, 1.5rem))',
+        marginLeft: 'calc(min(92vw, 850px) / 2 + clamp(0.75rem, 1.5vw, 1.5rem))',
         transform: 'translateY(-50%)',
         zIndex: 0,
         width: 'clamp(200px, 18vw, 280px)',

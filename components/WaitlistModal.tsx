@@ -98,7 +98,7 @@ export default function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="bg-gradient-to-b from-black via-slate-950 to-blue-950/50 backdrop-blur-xl border border-white/20 text-white sm:max-w-md max-w-[95vw] mx-4">
+      <DialogContent className="bg-gradient-to-b from-black via-slate-950 to-blue-950/50 backdrop-blur-xl border border-white/20 text-white w-[calc(100vw-2rem)] max-w-md mx-auto">
         <AnimatePresence mode="wait">
           {isSuccess ? (
             <motion.div

@@ -8,7 +8,6 @@ import { StickyBanner } from "@/components/ui/sticky-banner";
 import { Toaster } from "sonner";
 import { useRealtimeWaitlist } from "@/hooks/useRealtimeWaitlist";
 import VideoMetricsBackground from "@/components/background/VideoMetricsBackground";
-import YoutubeLiveChat from "@/components/background/YoutubeLiveChat";
 
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -17,7 +16,6 @@ export default function Home() {
   return (
     <div className="relative min-h-screen text-white">
       <VideoMetricsBackground onJoinWaitlist={() => setIsModalOpen(true)} />
-      <YoutubeLiveChat />
       
       <div className="relative">
         
