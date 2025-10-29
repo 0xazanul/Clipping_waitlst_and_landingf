@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import VideoMetricsBackground from "@/components/background/VideoMetricsBackground";
-import YoutubeLiveChat from "@/components/background/YoutubeLiveChat";
 
 const ppEditorial = localFont({
   src: [
@@ -55,17 +53,14 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${ppEditorial.variable} font-sans antialiased bg-slate-950`}>
         
-        {/* Gradient overlay */}
         <div
           className="fixed inset-0 z-[1] bg-gradient-to-b from-black/30 via-slate-950/40 to-blue-950/40 pointer-events-none"
         ></div>
 
-        {/* Content rendered over the background */}
-        <div className="relative z-10">
-          {/* YouTube player and chat - scrolls with content */}
-          <VideoMetricsBackground />
-          <YoutubeLiveChat />
-          {children}
+        <div className="relative">
+          <div className="relative z-20">
+            {children}
+          </div>
         </div>
       </body>
     </html>

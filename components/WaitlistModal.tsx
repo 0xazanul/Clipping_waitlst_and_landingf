@@ -98,7 +98,7 @@ export default function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="bg-gradient-to-b from-black via-slate-950 to-blue-950/50 backdrop-blur-xl border border-white/20 text-white sm:max-w-md">
+      <DialogContent className="bg-gradient-to-b from-black via-slate-950 to-blue-950/50 backdrop-blur-xl border border-white/20 text-white sm:max-w-md max-w-[95vw] mx-4">
         <AnimatePresence mode="wait">
           {isSuccess ? (
             <motion.div
@@ -107,7 +107,7 @@ export default function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
               transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-              className="flex flex-col items-center justify-center py-16"
+              className="flex flex-col items-center justify-center py-12 md:py-16"
             >
               {/* Animated Check Circle */}
               <motion.div
@@ -134,7 +134,7 @@ export default function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
                     times: [0, 0.5, 1],
                     ease: "easeOut"
                   }}
-                  className="absolute -inset-8 bg-gradient-to-r from-blue-500/30 via-purple-500/30 to-pink-500/30 rounded-full blur-2xl"
+                  className="absolute -inset-6 md:-inset-8 bg-gradient-to-r from-blue-500/30 via-purple-500/30 to-pink-500/30 rounded-full blur-2xl"
                 />
                 
                 {/* Inner Circle */}
@@ -142,11 +142,11 @@ export default function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
                   initial={{ scale: 0.8, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
                   transition={{ delay: 0.2, duration: 0.5, ease: "easeOut" }}
-                  className="relative w-24 h-24 rounded-full bg-gradient-to-br from-white/10 to-white/5 border-2 border-white/30 flex items-center justify-center shadow-2xl backdrop-blur-sm"
+                  className="relative w-20 h-20 md:w-24 md:h-24 rounded-full bg-gradient-to-br from-white/10 to-white/5 border-2 border-white/30 flex items-center justify-center shadow-2xl backdrop-blur-sm"
                 >
                   {/* Checkmark with draw animation */}
                   <motion.svg
-                    className="w-12 h-12 text-white"
+                    className="w-10 h-10 md:w-12 md:h-12 text-white"
                     viewBox="0 0 24 24"
                     fill="none"
                     initial={{ opacity: 0 }}
@@ -180,7 +180,7 @@ export default function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
                   duration: 0.5,
                   ease: [0.16, 1, 0.3, 1]
                 }}
-                className="text-3xl font-light tracking-tight text-white mb-3"
+                className="text-2xl md:text-3xl font-light tracking-tight text-white mb-3"
               >
                 You're All Set!
               </motion.h3>
@@ -193,7 +193,7 @@ export default function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
                   duration: 0.5,
                   ease: [0.16, 1, 0.3, 1]
                 }}
-                className="text-gray-400 text-base font-light tracking-wide text-center max-w-xs"
+                className="text-gray-400 text-sm md:text-base font-light tracking-wide text-center max-w-xs px-4"
               >
                 We'll notify you as soon as we launch
               </motion.p>
@@ -236,10 +236,10 @@ export default function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
               transition={{ duration: 0.2 }}
             >
               <DialogHeader>
-                <DialogTitle className="text-2xl font-light tracking-normal text-white">
+                <DialogTitle className="text-xl md:text-2xl font-light tracking-normal text-white">
                   Join the Waitlist
                 </DialogTitle>
-                <DialogDescription className="text-gray-500 text-sm font-light tracking-wide">
+                <DialogDescription className="text-gray-500 text-xs md:text-sm font-light tracking-wide">
                   Get early access when we launch
                 </DialogDescription>
               </DialogHeader>

@@ -229,11 +229,23 @@
   @keyframes slideInBottom {
     from {
       opacity: 0;
-      transform: translateY(20px);
+      transform: translateY(15px);
     }
     to {
       opacity: 1;
       transform: translateY(0);
+    }
+  }
+
+  @media (max-width: 1280px) {
+    .fixed-youtube-bg {
+      max-width: 85vw;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .fixed-youtube-bg {
+      max-width: 92vw;
     }
   }
 }

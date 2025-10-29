@@ -65,59 +65,57 @@ export default function YoutubeLiveChat() {
 
   return (
     <div 
-      className="pointer-events-none absolute"
+      className="pointer-events-none absolute hidden lg:block"
       style={{ 
         top: '50vh',
         left: '50%',
-        marginLeft: 'calc(min(95vw, 80rem) / 2 + 1rem)',
+        marginLeft: 'calc(min(95vw, 1000px) / 2 + clamp(0.75rem, 1.5vw, 1.5rem))',
         transform: 'translateY(-50%)',
         zIndex: 0,
-        width: 'min(22vw, 20rem)',
+        width: 'clamp(200px, 18vw, 280px)',
       }}
     >
         <div 
-          className="relative bg-black/20 backdrop-blur-sm rounded-xl overflow-hidden shadow-2xl border border-white/5 flex flex-col"
+          className="relative bg-black/20 backdrop-blur-sm rounded-lg md:rounded-xl overflow-hidden shadow-2xl border border-white/5 flex flex-col"
           style={{
-            height: 'min(70vh, 45rem)',
+            height: 'clamp(350px, 50vh, 550px)',
           }}
         >
-          {/* Chat Header */}
-          <div className="bg-black/40 px-4 py-2.5 border-b border-white/5 flex-shrink-0">
-            <div className="flex items-center gap-2">
-              <span className="text-white text-xs font-medium tracking-wide">Live Chat</span>
-              <div className="ml-auto flex items-center gap-1.5">
-                <div className="w-1.5 h-1.5 bg-red-500 rounded-full animate-pulse"></div>
-                <span className="text-slate-400 text-[10px]">LIVE</span>
+          <div className="bg-black/40 px-2.5 md:px-4 py-1.5 md:py-2.5 border-b border-white/5 flex-shrink-0">
+            <div className="flex items-center gap-1.5 md:gap-2">
+              <span className="text-white text-[10px] md:text-xs font-medium tracking-wide">Live Chat</span>
+              <div className="ml-auto flex items-center gap-1 md:gap-1.5">
+                <div className="w-1 h-1 md:w-1.5 md:h-1.5 bg-red-500 rounded-full animate-pulse"></div>
+                <span className="text-slate-400 text-[8px] md:text-[10px]">LIVE</span>
               </div>
             </div>
           </div>
 
-          {/* Chat Messages - scroll from bottom */}
           <div className="flex-1 overflow-hidden">
-            <div className="flex flex-col-reverse gap-0 p-3 h-full overflow-hidden">
+            <div className="flex flex-col-reverse gap-0 p-2 md:p-3 h-full overflow-hidden">
               {messages.map((msg, index) => (
                 <div
                   key={msg.id}
-                  className="animate-slide-in-bottom opacity-0 py-1.5 transition-all duration-300"
+                  className="animate-slide-in-bottom opacity-0 py-1 md:py-1.5 transition-all duration-300"
                   style={{
                     animation: `slideInBottom 0.4s ease-out forwards`,
                   }}
                 >
-                  <div className="flex items-start gap-2">
+                  <div className="flex items-start gap-1.5 md:gap-2">
                     <div 
-                      className="w-5 h-5 rounded-full flex-shrink-0 flex items-center justify-center text-white text-[10px] font-bold"
+                      className="w-4 h-4 md:w-5 md:h-5 rounded-full flex-shrink-0 flex items-center justify-center text-white text-[8px] md:text-[10px] font-bold"
                       style={{ backgroundColor: msg.color }}
                     >
                       {msg.username[0]}
                     </div>
                     <div className="flex-1 min-w-0">
                       <span 
-                        className="font-semibold text-[11px] mr-1.5"
+                        className="font-semibold text-[9px] md:text-[11px] mr-1"
                         style={{ color: msg.color }}
                       >
                         {msg.username}
                       </span>
-                      <span className="text-white/90 text-[11px] leading-snug">
+                      <span className="text-white/90 text-[9px] md:text-[11px] leading-snug">
                         {msg.message}
                       </span>
                     </div>
@@ -127,6 +125,6 @@ export default function YoutubeLiveChat() {
             </div>
           </div>
         </div>
-    </div>
+      </div>
   );
 }

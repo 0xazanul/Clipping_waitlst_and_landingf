@@ -1,0 +1,7 @@
+- Always make every component responsive on all screen sizes.
+- Keep code clean and well organized.
+- Do not create unwanted files or code.
+- Dont create test files.
+- Do not create stories files.
+- DO NOT add comments unless necessary.
+- Do not code anything extra that is not asked.
