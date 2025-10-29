@@ -173,4 +173,23 @@
   * {
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   }
+
+  /* YouTube Background Animations */
+  @keyframes yt-progress-bar {
+    0%, 100% { width: 0%; }
+    50% { width: 60%; }
+  }
+  
+  @keyframes yt-rotate-avatar {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  .yt-progress {
+    animation: yt-progress-bar 11s linear infinite;
+  }
+
+  .yt-avatar {
+    animation: yt-rotate-avatar 20s linear infinite;
+  }
 }
