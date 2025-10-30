@@ -34,17 +34,19 @@ export default function VideoMetricsBackground({ onJoinWaitlist }: VideoMetricsB
         zIndex: 10,
         paddingLeft: '5px',
         paddingRight: '5px',
-        paddingTop: '10px',
-        paddingBottom: '10px',
+        paddingTop: '5px',
+        paddingBottom: '5px',
       }}
     >
-      <div className="w-full mx-auto" style={{ maxHeight: 'calc(100vh - 20px)', maxWidth: '95%' }}>
+      <div className="w-full mx-auto" style={{ maxHeight: '100%', maxWidth: '95%' }}>
         <div 
-          className="relative bg-gradient-to-b from-black/80 via-slate-950/90 to-slate-900/80 rounded-lg md:rounded-xl shadow-2xl border border-white/[0.03] w-full overflow-auto"
+          className="relative bg-gradient-to-b from-black/80 via-slate-950/90 to-slate-900/80 rounded-lg md:rounded-xl shadow-2xl border border-white/[0.03] w-full overflow-hidden"
           style={{
             display: 'flex',
             flexDirection: 'column',
-            maxHeight: '100%',
+            maxHeight: 'calc(100vh - 10px)',
+            transform: 'scale(0.95)',
+            transformOrigin: 'center',
           }}
         >
         <div className="relative bg-gradient-to-br from-slate-950 via-slate-900 to-black flex items-center justify-center px-4 sm:px-6 md:px-8" style={{ aspectRatio: '16/9', flexShrink: 0 }}>
