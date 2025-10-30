@@ -105,13 +105,13 @@ export default function VideoMetricsBackground({ onJoinWaitlist }: VideoMetricsB
                     <h3 className="text-white/70 font-semibold text-[0.6875rem] leading-snug sm:text-xs md:text-sm line-clamp-2 mb-0.5">
                       From 0 to Viral: The Clipping Company Changed Everything
                     </h3>
-                    <div className="flex items-center gap-1.5 text-[0.625rem] sm:text-[0.6875rem] md:text-xs text-slate-500/70">
-                      <span className="font-medium text-slate-400/80">TheClippingCompany</span>
+                    <div className="flex items-center gap-2 text-[0.6875rem] sm:text-xs md:text-sm text-slate-400/90 mt-1">
+                      <span className="font-semibold">TheClippingCompany</span>
                     </div>
-                    <div className="flex items-center gap-1.5 text-[0.625rem] sm:text-[0.6875rem] md:text-xs text-slate-500/70 mt-0.5">
-                      <span>{views.toLocaleString()} views</span>
+                    <div className="flex items-center gap-2 text-[0.6875rem] sm:text-xs md:text-sm text-slate-500/80 mt-1">
+                      <span className="font-semibold">{views.toLocaleString()} views</span>
                       <span>•</span>
-                      <span>2 days ago</span>
+                      <span className="font-medium">2 days ago</span>
                     </div>
                   </div>
                   
