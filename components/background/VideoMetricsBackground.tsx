@@ -85,53 +85,48 @@ export default function VideoMetricsBackground({ onJoinWaitlist }: VideoMetricsB
                 <span className="text-white/80 font-bold text-[10px] sm:text-[11px] md:text-xs">TC</span>
               </div>
               <div className="flex-1 min-w-0">
-                <h3 className="text-white/70 font-semibold text-[0.6875rem] leading-snug sm:text-xs md:text-sm line-clamp-2 mb-0.5">
-                  From 0 to Viral: The Clipping Company Changed Everything
-                </h3>
-                <div className="flex items-center gap-1.5 text-[0.625rem] sm:text-[0.6875rem] md:text-xs text-slate-500/70">
-                  <span className="font-medium text-slate-400/80">TheClippingCompany</span>
+                <div className="flex items-start justify-between gap-2">
+                  <div className="flex-1 min-w-0">
+                    <h3 className="text-white/70 font-semibold text-[0.6875rem] leading-snug sm:text-xs md:text-sm line-clamp-2 mb-0.5">
+                      From 0 to Viral: The Clipping Company Changed Everything
+                    </h3>
+                    <div className="flex items-center gap-1.5 text-[0.625rem] sm:text-[0.6875rem] md:text-xs text-slate-500/70">
+                      <span className="font-medium text-slate-400/80">TheClippingCompany</span>
+                    </div>
+                    <div className="flex items-center gap-1.5 text-[0.625rem] sm:text-[0.6875rem] md:text-xs text-slate-500/70 mt-0.5">
+                      <span>{views.toLocaleString()} views</span>
+                      <span>•</span>
+                      <span>2 days ago</span>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-center gap-0.5 flex-shrink-0 mr-10">
+                    <div className="flex items-center gap-1 bg-white/[0.02] rounded px-2 py-1 border border-white/[0.03]">
+                      <svg className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-blue-400/60" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.43a2 2 0 001.106 1.79l.05.025A4 4 0 008.943 18h5.416a2 2 0 001.962-1.608l1.2-6A2 2 0 0015.56 8H12V4a2 2 0 00-2-2 1 1 0 00-1 1v.667a4 4 0 01-.8 2.4L6.8 7.933a4 4 0 00-.8 2.4z" />
+                      </svg>
+                      <span className="text-xs sm:text-sm font-semibold text-white/80 tabular-nums">{likes.toLocaleString()}</span>
+                      <span className="text-[0.625rem] text-emerald-400/70 font-medium">+{Math.round(likes * 0.15)}</span>
+                    </div>
+                    
+                    <div className="flex items-center gap-1 bg-white/[0.02] rounded px-2 py-1 border border-white/[0.03]">
+                      <svg className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-red-400/60" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z" />
+                      </svg>
+                      <span className="text-xs sm:text-sm font-semibold text-white/80 tabular-nums">{subscribers.toLocaleString()}</span>
+                      <span className="text-[0.625rem] text-emerald-400/70 font-medium">+{Math.round(subscribers * 0.12)}</span>
+                    </div>
+                    
+                    <div className="flex items-center gap-1 bg-white/[0.02] rounded px-2 py-1 border border-white/[0.03]">
+                      <svg className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-emerald-400/60" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M8.433 7.418c.155-.103.346-.196.567-.267v1.698a2.305 2.305 0 01-.567-.267C8.07 8.34 8 8.114 8 8c0-.114.07-.34.433-.582zM11 12.849v-1.698c.22.071.412.164.567.267.364.243.433.468.433.582 0 .114-.07.34-.433.582a2.305 2.305 0 01-.567.267z" />
+                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-13a1 1 0 10-2 0v.092a4.535 4.535 0 00-1.676.662C6.602 6.234 6 7.009 6 8c0 .99.602 1.765 1.324 2.246.48.32 1.054.545 1.676.662v1.941c-.391-.127-.68-.317-.843-.504a1 1 0 10-1.51 1.31c.562.649 1.413 1.076 2.353 1.253V15a1 1 0 102 0v-.092a4.535 4.535 0 001.676-.662C13.398 13.766 14 12.991 14 12c0-.99-.602-1.765-1.324-2.246A4.535 4.535 0 0011 9.092V7.151c.391.127.68.317.843.504a1 1 0 101.511-1.31c-.563-.649-1.413-1.076-2.354-1.253V5z" clipRule="evenodd" />
+                      </svg>
+                      <span className="text-xs sm:text-sm font-semibold text-white/80 tabular-nums">${earnings.toFixed(1)}</span>
+                      <span className="text-[0.625rem] text-emerald-400/70 font-medium">+${(earnings * 0.18).toFixed(1)}</span>
+                    </div>
+                  </div>
                 </div>
-                <div className="flex items-center gap-1.5 text-[0.625rem] sm:text-[0.6875rem] md:text-xs text-slate-500/70 mt-0.5">
-                  <span>{views.toLocaleString()} views</span>
-                  <span>•</span>
-                  <span>2 days ago</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="mt-1 sm:mt-1.5 pt-1 sm:pt-1.5 border-t border-white/[0.03] grid grid-cols-3 gap-1 sm:gap-1.5">
-              <div className="flex flex-col items-center bg-gradient-to-b from-white/[0.02] to-transparent rounded-lg p-1 sm:p-1.5 border border-white/[0.03] transition-all duration-300 hover:bg-white/[0.04] hover:border-white/[0.06]">
-                <div className="flex items-center gap-1 mb-0.5">
-                  <svg className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4 text-blue-400/60" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.43a2 2 0 001.106 1.79l.05.025A4 4 0 008.943 18h5.416a2 2 0 001.962-1.608l1.2-6A2 2 0 0015.56 8H12V4a2 2 0 00-2-2 1 1 0 00-1 1v.667a4 4 0 01-.8 2.4L6.8 7.933a4 4 0 00-.8 2.4z" />
-                  </svg>
-                  <span className="text-[0.625rem] sm:text-[0.6875rem] font-medium text-slate-400/80 uppercase tracking-wide">Likes</span>
-                </div>
-                <span className="text-sm sm:text-base font-bold text-white/80 tabular-nums">{likes.toLocaleString()}</span>
-                <span className="text-[0.625rem] sm:text-[0.6875rem] text-emerald-400/70 font-medium mt-0.5">+{Math.round(likes * 0.15)}</span>
-              </div>
-
-              <div className="flex flex-col items-center bg-gradient-to-b from-white/[0.02] to-transparent rounded-lg p-1 sm:p-1.5 border border-white/[0.03] transition-all duration-300 hover:bg-white/[0.04] hover:border-white/[0.06]">
-                <div className="flex items-center gap-1 mb-0.5">
-                  <svg className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4 text-red-400/60" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z" />
-                  </svg>
-                  <span className="text-[0.625rem] sm:text-[0.6875rem] font-medium text-slate-400/80 uppercase tracking-wide">Subs</span>
-                </div>
-                <span className="text-sm sm:text-base font-bold text-white/80 tabular-nums">{subscribers.toLocaleString()}</span>
-                <span className="text-[0.625rem] sm:text-[0.6875rem] text-emerald-400/70 font-medium mt-0.5">+{Math.round(subscribers * 0.12)}</span>
-              </div>
-
-              <div className="flex flex-col items-center bg-gradient-to-b from-white/[0.02] to-transparent rounded-lg p-1 sm:p-1.5 border border-white/[0.03] transition-all duration-300 hover:bg-white/[0.04] hover:border-white/[0.06]">
-                <div className="flex items-center gap-1 mb-0.5">
-                  <svg className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4 text-emerald-400/60" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M8.433 7.418c.155-.103.346-.196.567-.267v1.698a2.305 2.305 0 01-.567-.267C8.07 8.34 8 8.114 8 8c0-.114.07-.34.433-.582zM11 12.849v-1.698c.22.071.412.164.567.267.364.243.433.468.433.582 0 .114-.07.34-.433.582a2.305 2.305 0 01-.567.267z" />
-                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-13a1 1 0 10-2 0v.092a4.535 4.535 0 00-1.676.662C6.602 6.234 6 7.009 6 8c0 .99.602 1.765 1.324 2.246.48.32 1.054.545 1.676.662v1.941c-.391-.127-.68-.317-.843-.504a1 1 0 10-1.51 1.31c.562.649 1.413 1.076 2.353 1.253V15a1 1 0 102 0v-.092a4.535 4.535 0 001.676-.662C13.398 13.766 14 12.991 14 12c0-.99-.602-1.765-1.324-2.246A4.535 4.535 0 0011 9.092V7.151c.391.127.68.317.843.504a1 1 0 101.511-1.31c-.563-.649-1.413-1.076-2.354-1.253V5z" clipRule="evenodd" />
-                  </svg>
-                  <span className="text-[0.625rem] sm:text-[0.6875rem] font-medium text-slate-400/80 uppercase tracking-wide">Earned</span>
-                </div>
-                <span className="text-sm sm:text-base font-bold text-white/80 tabular-nums">${earnings.toFixed(1)}</span>
-                <span className="text-[0.625rem] sm:text-[0.6875rem] text-emerald-400/70 font-medium mt-0.5">+${(earnings * 0.18).toFixed(1)}</span>
               </div>
             </div>
 
@@ -144,8 +139,8 @@ export default function VideoMetricsBackground({ onJoinWaitlist }: VideoMetricsB
               </button>
               
               {waitlistCount !== null && waitlistCount > 0 && (
-                <p className="text-center mt-1.5 sm:mt-2 text-[0.6875rem] sm:text-xs text-gray-500/50 font-light">
-                  <span className="font-medium text-white/70">{waitlistCount.toLocaleString()}</span> {waitlistCount === 1 ? "person" : "people"} already joined
+                <p className="text-center mt-1.5 sm:mt-2 text-xs sm:text-sm text-white/80 font-normal">
+                  <span className="font-semibold text-white">{waitlistCount.toLocaleString()}</span> {waitlistCount === 1 ? "person" : "people"} already joined
                 </p>
               )}
             </div>
