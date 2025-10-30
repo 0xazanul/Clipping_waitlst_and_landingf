@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useRealtimeWaitlist } from "@/hooks/useRealtimeWaitlist";
+import HeaderWaitlist from "@/components/HeaderWaitlist";
 
 interface VideoMetricsBackgroundProps {
   onJoinWaitlist?: () => void;
@@ -69,28 +70,32 @@ export default function VideoMetricsBackground({ onJoinWaitlist }: VideoMetricsB
 
             <div className="absolute inset-0 bg-gradient-to-tr from-purple-900/5 via-blue-900/3 to-cyan-900/5 pointer-events-none" style={{ zIndex: 2 }} />
             
-            <div className="absolute inset-0 flex items-center justify-center" style={{ zIndex: 3 }}>
-            <div className="relative z-10 w-full max-w-xl text-center">
-              <h1 className="font-sans text-[2rem] leading-[1.2] sm:text-[2.25rem] md:text-[2.75rem] lg:text-[3.25rem] font-extralight tracking-tight text-white/90 mb-2 sm:mb-3 md:mb-4 px-2">
-                make videos and
-                <br />
-                earn crypto
-              </h1>
-              
-              <p className="font-sans text-[0.9375rem] leading-[1.5] sm:text-[1.0625rem] md:text-[1.1875rem] lg:text-[1.3125rem] text-gray-400/80 font-extralight px-4 sm:px-6">
-                post brand content on your channel.
-                <br />
-                hit view targets. earn money.
-              </p>
-            </div>
+            <div className="absolute inset-0 flex flex-col items-center justify-center px-2 sm:px-4" style={{ zIndex: 3 }}>
+              <div className="relative w-full max-w-xl text-center">
+                <h1 className="font-sans text-[1.75rem] leading-[1.2] sm:text-[2rem] md:text-[2.5rem] lg:text-[3rem] font-extralight tracking-tight text-white/90 mb-2 sm:mb-3 md:mb-4">
+                  make videos and
+                  <br />
+                  earn crypto
+                </h1>
+                
+                <p className="font-sans text-[0.875rem] leading-[1.5] sm:text-[1rem] md:text-[1.125rem] lg:text-[1.25rem] text-gray-400/80 font-extralight mb-4 sm:mb-6 md:mb-8">
+                  post brand content on your channel.
+                  <br />
+                  hit view targets. earn money.
+                </p>
 
-            <div className="absolute bottom-1.5 right-1.5 sm:bottom-2 sm:right-2 md:bottom-3 md:right-3 bg-black/95 px-1.5 py-0.5 md:px-2 md:py-1 rounded text-[9px] sm:text-[10px] md:text-xs font-semibold text-white/60 pointer-events-none">
-              10:24
-            </div>
-            
-            <div className="absolute bottom-0 left-0 right-0 h-0.5 md:h-1 bg-white/5 pointer-events-none">
-              <div className="yt-progress h-full bg-red-600/70 transition-all duration-300" />
-            </div>
+                <div className="flex items-center justify-center w-full">
+                  <HeaderWaitlist />
+                </div>
+              </div>
+
+              <div className="absolute bottom-1.5 right-1.5 sm:bottom-2 sm:right-2 md:bottom-3 md:right-3 bg-black/95 px-1.5 py-0.5 md:px-2 md:py-1 rounded text-[9px] sm:text-[10px] md:text-xs font-semibold text-white/60 pointer-events-none">
+                10:24
+              </div>
+              
+              <div className="absolute bottom-0 left-0 right-0 h-0.5 md:h-1 bg-white/5 pointer-events-none">
+                <div className="yt-progress h-full bg-red-600/70 transition-all duration-300" />
+              </div>
             </div>
           </div>
           
