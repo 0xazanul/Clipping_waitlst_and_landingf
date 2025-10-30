@@ -39,9 +39,9 @@ export default function HeaderWaitlist() {
               <button 
                 onClick={() => setShowEmailInput(true)}
                 className={`
-                  relative flex items-center justify-center gap-1.5
-                  px-3 sm:px-4 md:px-5
-                  text-xs sm:text-sm md:text-base font-medium antialiased
+                  relative flex items-center justify-center gap-1
+                  px-2.5 sm:px-3 md:px-4
+                  text-[10px] sm:text-xs md:text-sm font-medium antialiased
                   text-white/90 bg-white/10 
                   backdrop-blur-xl rounded-full 
                   border border-white/20 
@@ -50,15 +50,15 @@ export default function HeaderWaitlist() {
                   transition-all duration-500 ease-out
                   ${showEmailInput ? 'opacity-0 scale-95 pointer-events-none' : 'opacity-100 scale-100'}
                 `}
-                style={{ minHeight: 0, height: '28px' }}
+                style={{ minHeight: 0, height: '24px', display: 'flex', alignItems: 'center' }}
               >
                 <span className="absolute inset-0 bg-gradient-to-r from-white/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-full" />
                 
-                <span className="relative whitespace-nowrap leading-none">Join Waitlist</span>
+                <span className="relative whitespace-nowrap" style={{ lineHeight: '1', display: 'flex', alignItems: 'center' }}>Join Waitlist</span>
                 
-                <div className="relative w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-gradient-to-br from-slate-800 to-slate-900 flex items-center justify-center border border-white/10 shadow-sm">
+                <div className="relative w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full bg-gradient-to-br from-slate-800 to-slate-900 flex items-center justify-center border border-white/10 shadow-sm">
                   <svg 
-                    className="w-2 h-2 sm:w-2.5 sm:h-2.5 text-white/80 group-hover:translate-x-0.5 transition-transform duration-200" 
+                    className="w-1.5 h-1.5 sm:w-2 sm:h-2 text-white/80 group-hover:translate-x-0.5 transition-transform duration-200" 
                     fill="none" 
                     viewBox="0 0 24 24" 
                     stroke="currentColor" 
@@ -88,21 +88,21 @@ export default function HeaderWaitlist() {
                     className="
                       w-[140px] sm:w-[160px] md:w-[180px]
                       px-2.5 sm:px-3 md:px-4
-                      text-xs sm:text-sm md:text-base font-medium antialiased
+                      text-[10px] sm:text-xs md:text-sm font-medium antialiased
                       text-white/90 placeholder:text-white/40
                       bg-white/10 backdrop-blur-xl
                       rounded-full border border-white/20
                       focus:border-white/40 focus:outline-none focus:ring-2 focus:ring-white/10
                       transition-all duration-300
                     "
-                    style={{ minHeight: 0, height: '28px' }}
+                    style={{ minHeight: 0, height: '24px' }}
                   />
 
                   <button
                     type="submit"
                     className="
                       relative flex items-center justify-center
-                      p-1
+                      p-0.5
                       text-white/90 bg-white/10 backdrop-blur-xl
                       rounded-full border border-white/20
                       hover:border-white/30 hover:bg-white/15
@@ -110,11 +110,11 @@ export default function HeaderWaitlist() {
                       transition-all duration-300
                       group
                     "
-                    style={{ minHeight: 0, height: '28px', width: '28px' }}
+                    style={{ minHeight: 0, height: '24px', width: '24px' }}
                   >
-                    <div className="relative w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-gradient-to-br from-slate-800 to-slate-900 flex items-center justify-center border border-white/10">
+                    <div className="relative w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full bg-gradient-to-br from-slate-800 to-slate-900 flex items-center justify-center border border-white/10">
                       <svg 
-                        className="w-2 h-2 sm:w-2.5 sm:h-2.5 text-white/80 group-hover:translate-x-0.5 transition-transform duration-200" 
+                        className="w-1.5 h-1.5 sm:w-2 sm:h-2 text-white/80 group-hover:translate-x-0.5 transition-transform duration-200" 
                         fill="none" 
                         viewBox="0 0 24 24" 
                         stroke="currentColor" 
