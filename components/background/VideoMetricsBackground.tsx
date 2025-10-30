@@ -131,17 +131,26 @@ export default function VideoMetricsBackground({ onJoinWaitlist }: VideoMetricsB
             </div>
 
             <div className="px-1.5 sm:px-2 md:px-3 pt-1.5 sm:pt-2 pb-1.5 sm:pb-2">
-              <button
+              {/* <button
                 onClick={onJoinWaitlist}
                 className="w-full bg-white/95 hover:bg-white text-black font-medium text-xs sm:text-sm py-1.5 sm:py-2 rounded-lg transition-all duration-200 hover:scale-[1.01] active:scale-[0.99]"
               >
                 Join Waitlist →
-              </button>
+              </button> */}
               
               {waitlistCount !== null && waitlistCount > 0 && (
-                <p className="text-center mt-1.5 sm:mt-2 text-xs sm:text-sm text-white/80 font-normal">
-                  <span className="font-semibold text-white">{waitlistCount.toLocaleString()}</span> {waitlistCount === 1 ? "person" : "people"} already joined
-                </p>
+                <div className="flex items-center justify-center gap-3 mt-1.5 sm:mt-2">
+                  <div className="flex -space-x-2">
+                    <img src="https://i.pravatar.cc/150?img=1" alt="" className="w-8 h-8 rounded-full border-2 border-black object-cover" />
+                    <img src="https://i.pravatar.cc/150?img=2" alt="" className="w-8 h-8 rounded-full border-2 border-black object-cover" />
+                    <img src="https://i.pravatar.cc/150?img=3" alt="" className="w-8 h-8 rounded-full border-2 border-black object-cover" />
+                    <img src="https://i.pravatar.cc/150?img=4" alt="" className="w-8 h-8 rounded-full border-2 border-black object-cover" />
+                    <img src="https://i.pravatar.cc/150?img=5" alt="" className="w-8 h-8 rounded-full border-2 border-black object-cover" />
+                  </div>
+                  <p className="text-sm sm:text-base text-gray-400 font-normal">
+                    Join <span className="font-semibold text-white">{waitlistCount.toLocaleString()}+</span> others on the waitlist
+                  </p>
+                </div>
               )}
             </div>
           </div>
