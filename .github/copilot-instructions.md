@@ -5,3 +5,5 @@
 - Do not create stories files.
 - DO NOT add comments unless necessary.
 - Do not code anything extra that is not asked.
+- Make sure each and every thing is responsive across all screen sizes.
+- 

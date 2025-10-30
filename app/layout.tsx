@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import HeaderWaitlist from "@/components/HeaderWaitlist";
 
 const ppEditorial = localFont({
   src: [
@@ -53,6 +54,8 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${ppEditorial.variable} font-sans antialiased bg-slate-950`}>
         
+        <HeaderWaitlist />
+
         <div
           className="fixed inset-0 z-[1] bg-gradient-to-b from-black/40 via-slate-950/50 to-slate-900/40 pointer-events-none"
         ></div>
