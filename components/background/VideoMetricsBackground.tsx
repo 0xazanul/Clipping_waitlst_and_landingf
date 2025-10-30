@@ -30,39 +30,54 @@ export default function VideoMetricsBackground({ onJoinWaitlist }: VideoMetricsB
 
   return (
     <div 
-      className="fixed-youtube-bg absolute inset-0 flex items-center justify-center"
+      className="fixed-youtube-bg absolute inset-0 flex items-start justify-center"
       style={{ 
         height: '100vh',
         maxHeight: '100vh',
         zIndex: 10,
         paddingLeft: '8px',
         paddingRight: '8px',
-        paddingTop: isDesktop ? '0px' : '8px',
+        paddingTop: '70px',
         paddingBottom: '8px',
       }}
     >
-      <div className="w-full mx-auto" style={{ maxHeight: '100%', maxWidth: '98%', display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%' }}>
+      <div className="w-full mx-auto" style={{ maxHeight: '100%', maxWidth: '98%', display: 'flex', alignItems: 'flex-start', justifyContent: 'center', height: '100%' }}>
         <div 
           className="relative bg-gradient-to-b from-black/80 via-slate-950/90 to-slate-900/80 rounded-lg md:rounded-xl shadow-2xl border border-white/[0.03] w-full"
           style={{
             display: 'flex',
             flexDirection: 'column',
-            maxHeight: '96vh',
+            maxHeight: '100%',
             maxWidth: '100%',
           }}
         >
         <div className="relative bg-gradient-to-br from-slate-950 via-slate-900 to-black flex items-center justify-center px-4 sm:px-6 md:px-8" style={{ width: '100%', paddingBottom: '35%', position: 'relative', flexShrink: 0 }}>
-            <div className="absolute inset-0 bg-gradient-to-tr from-purple-900/5 via-blue-900/3 to-cyan-900/5 pointer-events-none" />
+            {/* Video Background */}
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="absolute inset-0 w-full h-full object-cover opacity-30"
+              style={{ zIndex: 0 }}
+            >
+              <source src="/videos/video-bg.mp4" type="video/mp4" />
+            </video>
+
+            {/* Dark overlay for text visibility */}
+            <div className="absolute inset-0 bg-black/40" style={{ zIndex: 1 }} />
+
+            <div className="absolute inset-0 bg-gradient-to-tr from-purple-900/5 via-blue-900/3 to-cyan-900/5 pointer-events-none" style={{ zIndex: 2 }} />
             
-            <div className="absolute inset-0 flex items-center justify-center">
+            <div className="absolute inset-0 flex items-center justify-center" style={{ zIndex: 3 }}>
             <div className="relative z-10 w-full max-w-xl text-center">
-              <h1 className="text-[1.75rem] leading-[1.2] sm:text-[2rem] md:text-[2.5rem] lg:text-[3rem] font-light tracking-tight text-white/70 mb-2 sm:mb-3 md:mb-4 px-2">
+              <h1 className="text-[2rem] leading-[1.2] sm:text-[2.25rem] md:text-[2.75rem] lg:text-[3.25rem] font-semibold tracking-tight text-white/90 mb-2 sm:mb-3 md:mb-4 px-2">
                 make videos and
                 <br />
                 earn crypto
               </h1>
               
-              <p className="text-[0.875rem] leading-[1.5] sm:text-[1rem] md:text-[1.125rem] lg:text-[1.25rem] text-gray-500/60 font-light px-4 sm:px-6">
+              <p className="text-[0.9375rem] leading-[1.5] sm:text-[1.0625rem] md:text-[1.1875rem] lg:text-[1.3125rem] text-gray-400/80 font-medium px-4 sm:px-6">
                 post brand content on your channel.
                 <br />
                 hit view targets. earn money.
