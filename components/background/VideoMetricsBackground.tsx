@@ -27,15 +27,15 @@ export default function VideoMetricsBackground({ onJoinWaitlist }: VideoMetricsB
 
   return (
     <div 
-      className="fixed-youtube-bg absolute inset-0 flex items-center justify-center"
+      className="fixed-youtube-bg absolute inset-0 flex items-start justify-center"
       style={{ 
         height: '100vh',
         maxHeight: '100vh',
         zIndex: 10,
         paddingLeft: '5px',
         paddingRight: '5px',
-        paddingTop: '5px',
-        paddingBottom: '5px',
+        paddingTop: '3px',
+        paddingBottom: '0px',
       }}
     >
       <div className="w-full mx-auto" style={{ maxHeight: '100%', maxWidth: '95%' }}>
@@ -52,13 +52,13 @@ export default function VideoMetricsBackground({ onJoinWaitlist }: VideoMetricsB
             
             <div className="absolute inset-0 flex items-center justify-center">
             <div className="relative z-10 w-full max-w-xl text-center">
-              <h1 className="text-[1.5rem] leading-[1.2] sm:text-[1.75rem] md:text-[2rem] lg:text-[2.5rem] font-light tracking-tight text-white/70 mb-2 sm:mb-3 md:mb-4 px-2">
+              <h1 className="text-[1.75rem] leading-[1.2] sm:text-[2rem] md:text-[2.5rem] lg:text-[3rem] font-light tracking-tight text-white/70 mb-2 sm:mb-3 md:mb-4 px-2">
                 make videos and
                 <br />
                 earn crypto
               </h1>
               
-              <p className="text-[0.75rem] leading-[1.5] sm:text-[0.875rem] md:text-[1rem] lg:text-[1.125rem] text-gray-500/60 font-light px-4 sm:px-6">
+              <p className="text-[0.875rem] leading-[1.5] sm:text-[1rem] md:text-[1.125rem] lg:text-[1.25rem] text-gray-500/60 font-light px-4 sm:px-6">
                 post brand content on your channel.
                 <br />
                 hit view targets. earn money.
