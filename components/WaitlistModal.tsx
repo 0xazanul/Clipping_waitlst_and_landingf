@@ -98,50 +98,47 @@ export default function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="bg-gradient-to-b from-black via-slate-950 to-blue-950/50 backdrop-blur-xl border border-white/20 text-white w-[calc(100vw-2rem)] max-w-md mx-auto">
+      <DialogContent className="bg-gradient-to-b from-slate-950 via-slate-900/95 to-slate-950/90 backdrop-blur-xl border border-white/20 text-white w-[calc(100vw-2rem)] max-w-md mx-auto shadow-2xl">
         <AnimatePresence mode="wait">
           {isSuccess ? (
             <motion.div
               key="success"
-              initial={{ opacity: 0, scale: 0.95 }}
+              initial={{ opacity: 0, scale: 0.96 }}
               animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.95 }}
-              transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-              className="flex flex-col items-center justify-center py-12 md:py-16"
+              exit={{ opacity: 0, scale: 0.96 }}
+              transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+              className="flex flex-col items-center justify-center py-14 md:py-16"
             >
-              {/* Animated Check Circle */}
               <motion.div
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
                 transition={{ 
                   delay: 0.1, 
                   type: "spring", 
-                  stiffness: 260, 
-                  damping: 20 
+                  stiffness: 280, 
+                  damping: 22 
                 }}
-                className="relative mb-8"
+                className="relative mb-7"
               >
-                {/* Outer Glow Rings */}
                 <motion.div
                   initial={{ scale: 0.5, opacity: 0 }}
                   animate={{ 
                     scale: [0.5, 1.3, 1], 
-                    opacity: [0, 0.6, 0] 
+                    opacity: [0, 0.5, 0] 
                   }}
                   transition={{ 
                     delay: 0.15, 
-                    duration: 1.2,
+                    duration: 1.1,
                     times: [0, 0.5, 1],
                     ease: "easeOut"
                   }}
-                  className="absolute -inset-6 md:-inset-8 bg-gradient-to-r from-blue-500/30 via-purple-500/30 to-pink-500/30 rounded-full blur-2xl"
+                  className="absolute -inset-7 md:-inset-8 bg-gradient-to-r from-blue-500/20 via-indigo-500/20 to-violet-500/20 rounded-full blur-2xl"
                 />
                 
-                {/* Inner Circle */}
                 <motion.div
-                  initial={{ scale: 0.8, opacity: 0 }}
+                  initial={{ scale: 0.85, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
-                  transition={{ delay: 0.2, duration: 0.5, ease: "easeOut" }}
+                  transition={{ delay: 0.2, duration: 0.45, ease: "easeOut" }}
                   className="relative w-20 h-20 md:w-24 md:h-24 rounded-full bg-gradient-to-br from-white/10 to-white/5 border-2 border-white/30 flex items-center justify-center shadow-2xl backdrop-blur-sm"
                 >
                   {/* Checkmark with draw animation */}

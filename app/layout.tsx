@@ -54,7 +54,7 @@ export default function RootLayout({
       <body className={`${ppEditorial.variable} font-sans antialiased bg-slate-950`}>
         
         <div
-          className="fixed inset-0 z-[1] bg-gradient-to-b from-black/30 via-slate-950/40 to-blue-950/40 pointer-events-none"
+          className="fixed inset-0 z-[1] bg-gradient-to-b from-black/40 via-slate-950/50 to-slate-900/40 pointer-events-none"
         ></div>
 
         <div className="relative">

@@ -39,39 +39,35 @@ function HowItWorks() {
   });
 
   return (
-    <section ref={containerRef} className="relative py-[clamp(4rem,15vh,8rem)] px-[clamp(1rem,5vw,1.5rem)] overflow-hidden">
-      <div className="max-w-[clamp(20rem,90vw,60rem)] mx-auto relative">
-        {/* Section Header */}
+    <section ref={containerRef} className="relative py-20 sm:py-24 md:py-28 lg:py-32 px-4 sm:px-6 md:px-8 overflow-hidden mt-48 sm:mt-56 md:mt-64 lg:mt-72">
+      <div className="max-w-5xl mx-auto relative">
         <motion.div
-          initial={{ opacity: 0, y: 8 }}
+          initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.5 }}
-          transition={{ duration: 0.3, ease: "easeOut" }}
-          className="text-center mb-[clamp(3rem,12vw,6rem)]"
+          viewport={{ once: true, amount: 0.4 }}
+          transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+          className="text-center mb-16 sm:mb-20 md:mb-24"
         >
-          <h2 className="text-[clamp(2rem,8vw,3.5rem)] font-light tracking-tight text-white mb-[clamp(0.75rem,2vw,1rem)]">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.5rem] font-light tracking-tight text-white mb-3 sm:mb-4">
             How it works
           </h2>
           
-          <p className="text-[clamp(0.875rem,2.5vw,1rem)] text-gray-500 max-w-[clamp(18rem,70vw,38rem)] mx-auto font-light tracking-wide leading-relaxed">
+          <p className="text-base sm:text-lg md:text-xl text-gray-400/90 max-w-2xl mx-auto font-light tracking-wide leading-relaxed">
             Post on your channel, hit targets, earn money
           </p>
         </motion.div>
 
-        {/* Timeline Steps */}
         <div className="relative">
-          {/* Vertical line */}
-          <div className="absolute left-[clamp(1.5rem,5vw,3rem)] md:left-1/2 top-0 bottom-0 w-[1px] bg-gradient-to-b from-transparent via-white/10 to-transparent" />
+          <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-white/10 to-transparent" />
           
-          {/* Animated progress line */}
           <motion.div
-            className="absolute left-[clamp(1.5rem,5vw,3rem)] md:left-1/2 top-0 bottom-0 w-[1px] bg-gradient-to-b from-blue-500 via-indigo-500 to-violet-500 origin-top"
+            className="absolute left-8 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-blue-500 via-indigo-500 to-violet-500 origin-top"
             style={{
               scaleY: useTransform(scrollYProgress, [0.2, 0.8], [0, 1]),
             }}
           />
 
-          <div className="space-y-[clamp(3rem,10vw,5rem)]">
+          <div className="space-y-12 sm:space-y-16 md:space-y-20">
             {steps.map((step, index) => {
               const Icon = step.icon;
               const isEven = index % 2 === 0;
@@ -79,36 +75,33 @@ function HowItWorks() {
               return (
                 <motion.div
                   key={step.id}
-                  initial={{ opacity: 0, x: isEven ? -20 : 20 }}
+                  initial={{ opacity: 0, x: isEven ? -16 : 16 }}
                   whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true, margin: "-50px", amount: 0.3 }}
-                  transition={{ duration: 0.3, delay: index * 0.03, ease: "easeOut" }}
+                  viewport={{ once: true, margin: "-60px", amount: 0.3 }}
+                  transition={{ duration: 0.4, delay: index * 0.05, ease: [0.16, 1, 0.3, 1] }}
                   className="relative"
                 >
-                  <div className={`flex flex-col md:flex-row items-start md:items-center gap-[clamp(1rem,4vw,1.5rem)] ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'}`}>
-                    {/* Content */}
-                    <div className={`flex-1 ${isEven ? 'md:text-right md:pr-[clamp(2rem,8vw,4rem)]' : 'md:text-left md:pl-[clamp(2rem,8vw,4rem)]'} ml-[clamp(3rem,12vw,4rem)] md:ml-0`}>
+                  <div className={`flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-6 ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'}`}>
+                    <div className={`flex-1 ${isEven ? 'md:text-right md:pr-12' : 'md:text-left md:pl-12'} ml-16 md:ml-0`}>
                       <div className={`inline-block ${isEven ? 'md:text-right' : 'md:text-left'} text-left`}>
-                        <h3 className="text-[clamp(1.5rem,5vw,2rem)] font-light text-white mb-[clamp(0.5rem,2vw,0.75rem)] tracking-tight">
+                        <h3 className="text-2xl sm:text-3xl md:text-4xl font-light text-white mb-2 sm:mb-3 tracking-tight">
                           {step.title}
                         </h3>
                         
-                        <p className="text-[clamp(0.875rem,2.5vw,1rem)] text-gray-500 font-light leading-relaxed max-w-[clamp(16rem,60vw,28rem)] tracking-wide">
+                        <p className="text-base sm:text-lg md:text-xl text-gray-400/90 font-light leading-relaxed max-w-md tracking-wide">
                           {step.description}
                         </p>
                       </div>
                     </div>
 
-                    {/* Icon - centered on timeline */}
                     <motion.div
                       whileHover={{ scale: 1.05 }}
                       transition={{ duration: 0.2 }}
-                      className="absolute left-[clamp(1.5rem,5vw,3rem)] md:left-1/2 md:-translate-x-1/2 w-[clamp(2.5rem,8vw,3rem)] h-[clamp(2.5rem,8vw,3rem)] bg-white/5 border border-white/10 flex items-center justify-center rounded-[clamp(0.25rem,1vw,0.5rem)] transition-all duration-300"
+                      className="absolute left-8 md:left-1/2 md:-translate-x-1/2 w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-b from-white/10 to-white/5 border border-white/20 flex items-center justify-center rounded-xl transition-all duration-300 hover:bg-white/15 hover:border-white/30 shadow-lg"
                     >
-                      <Icon className="w-[clamp(1.25rem,4vw,1.5rem)] h-[clamp(1.25rem,4vw,1.5rem)] text-white/70" strokeWidth={1.5} />
+                      <Icon className="w-6 h-6 sm:w-7 sm:h-7 text-white/80" strokeWidth={1.5} />
                     </motion.div>
 
-                    {/* Spacer for even layout */}
                     <div className="flex-1 hidden md:block" />
                   </div>
                 </motion.div>
