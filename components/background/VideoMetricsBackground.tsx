@@ -71,13 +71,13 @@ export default function VideoMetricsBackground({ onJoinWaitlist }: VideoMetricsB
             
             <div className="absolute inset-0 flex items-center justify-center" style={{ zIndex: 3 }}>
             <div className="relative z-10 w-full max-w-xl text-center">
-              <h1 className="text-[2rem] leading-[1.2] sm:text-[2.25rem] md:text-[2.75rem] lg:text-[3.25rem] font-semibold tracking-tight text-white/90 mb-2 sm:mb-3 md:mb-4 px-2">
+              <h1 className="font-sans text-[2rem] leading-[1.2] sm:text-[2.25rem] md:text-[2.75rem] lg:text-[3.25rem] font-extralight tracking-tight text-white/90 mb-2 sm:mb-3 md:mb-4 px-2">
                 make videos and
                 <br />
                 earn crypto
               </h1>
               
-              <p className="text-[0.9375rem] leading-[1.5] sm:text-[1.0625rem] md:text-[1.1875rem] lg:text-[1.3125rem] text-gray-400/80 font-medium px-4 sm:px-6">
+              <p className="font-sans text-[0.9375rem] leading-[1.5] sm:text-[1.0625rem] md:text-[1.1875rem] lg:text-[1.3125rem] text-gray-400/80 font-extralight px-4 sm:px-6">
                 post brand content on your channel.
                 <br />
                 hit view targets. earn money.
