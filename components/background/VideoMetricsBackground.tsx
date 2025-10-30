@@ -12,9 +12,12 @@ export default function VideoMetricsBackground({ onJoinWaitlist }: VideoMetricsB
   const [likes, setLikes] = useState(342);
   const [subscribers, setSubscribers] = useState(1850);
   const [earnings, setEarnings] = useState(47.5);
+  const [isDesktop, setIsDesktop] = useState(false);
   const waitlistCount = useRealtimeWaitlist();
 
   useEffect(() => {
+    setIsDesktop(window.innerWidth >= 768);
+    
     const animate = () => {
       setViews(prev => prev < 9000 ? prev + 50 : 1247);
       setLikes(prev => prev < 2500 ? prev + 15 : 342);
@@ -32,19 +35,19 @@ export default function VideoMetricsBackground({ onJoinWaitlist }: VideoMetricsB
         height: '100vh',
         maxHeight: '100vh',
         zIndex: 10,
-        paddingLeft: '5px',
-        paddingRight: '5px',
-        paddingTop: '5px',
-        paddingBottom: '5px',
+        paddingLeft: '8px',
+        paddingRight: '8px',
+        paddingTop: isDesktop ? '0px' : '8px',
+        paddingBottom: '8px',
       }}
     >
-      <div className="w-full mx-auto" style={{ maxHeight: '100%', maxWidth: '95%', display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%' }}>
+      <div className="w-full mx-auto" style={{ maxHeight: '100%', maxWidth: '98%', display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%' }}>
         <div 
           className="relative bg-gradient-to-b from-black/80 via-slate-950/90 to-slate-900/80 rounded-lg md:rounded-xl shadow-2xl border border-white/[0.03] w-full"
           style={{
             display: 'flex',
             flexDirection: 'column',
-            maxHeight: '95vh',
+            maxHeight: '96vh',
             maxWidth: '100%',
           }}
         >
