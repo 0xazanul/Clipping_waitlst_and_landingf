@@ -147,9 +147,13 @@ export default function VideoMetricsBackground({ onJoinWaitlist }: VideoMetricsB
                     <img src="https://i.pravatar.cc/150?img=4" alt="" className="w-8 h-8 rounded-full border-2 border-black object-cover" />
                     <img src="https://i.pravatar.cc/150?img=5" alt="" className="w-8 h-8 rounded-full border-2 border-black object-cover" />
                   </div>
-                  <p className="text-sm sm:text-base text-gray-400 font-normal">
-                    Join <span className="font-semibold text-white">{waitlistCount.toLocaleString()}+</span> others on the waitlist
-                  </p>
+                  <div className="flex items-center gap-2">
+                    <span className="text-sm sm:text-base text-gray-400 font-normal">Join</span>
+                    <span className="font-bold text-base sm:text-lg text-orange-400">
+                      {waitlistCount.toLocaleString()}+
+                    </span>
+                    <span className="text-sm sm:text-base text-gray-400 font-normal">others on the waitlist</span>
+                  </div>
                 </div>
               )}
             </div>
