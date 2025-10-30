@@ -27,27 +27,28 @@ export default function VideoMetricsBackground({ onJoinWaitlist }: VideoMetricsB
 
   return (
     <div 
-      className="fixed-youtube-bg absolute inset-0 flex items-start justify-center"
+      className="fixed-youtube-bg absolute inset-0 flex items-center justify-center"
       style={{ 
         height: '100vh',
         maxHeight: '100vh',
         zIndex: 10,
         paddingLeft: '5px',
         paddingRight: '5px',
-        paddingTop: '3px',
-        paddingBottom: '0px',
+        paddingTop: '5px',
+        paddingBottom: '5px',
       }}
     >
-      <div className="w-full mx-auto" style={{ maxHeight: '100%', maxWidth: '95%' }}>
+      <div className="w-full mx-auto" style={{ maxHeight: '100%', maxWidth: '95%', display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%' }}>
         <div 
           className="relative bg-gradient-to-b from-black/80 via-slate-950/90 to-slate-900/80 rounded-lg md:rounded-xl shadow-2xl border border-white/[0.03] w-full"
           style={{
             display: 'flex',
             flexDirection: 'column',
-            maxHeight: 'calc(100vh - 10px)',
+            maxHeight: '95vh',
+            maxWidth: '100%',
           }}
         >
-        <div className="relative bg-gradient-to-br from-slate-950 via-slate-900 to-black flex items-center justify-center px-4 sm:px-6 md:px-8" style={{ width: '100%', paddingBottom: '40%', position: 'relative', flexShrink: 0 }}>
+        <div className="relative bg-gradient-to-br from-slate-950 via-slate-900 to-black flex items-center justify-center px-4 sm:px-6 md:px-8" style={{ width: '100%', paddingBottom: '35%', position: 'relative', flexShrink: 0 }}>
             <div className="absolute inset-0 bg-gradient-to-tr from-purple-900/5 via-blue-900/3 to-cyan-900/5 pointer-events-none" />
             
             <div className="absolute inset-0 flex items-center justify-center">
