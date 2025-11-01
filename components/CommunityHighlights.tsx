@@ -106,18 +106,18 @@ export default function CommunityHighlights() {
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm">
               <div className="w-2 h-2 rounded-full bg-orange-500 animate-pulse" />
               <span className="text-xs sm:text-sm text-gray-400 font-light tracking-wide">
-                medusa
+                The Clipping Company
               </span>
             </div>
 
             <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light text-white tracking-tight">
-              Community
+              Supercharge your company with community of
               <br />
-              Highlights
+              content creators
             </h2>
 
             <p className="text-sm sm:text-base text-gray-500 font-light tracking-wide">
-              January 2024
+              
             </p>
           </div>
 

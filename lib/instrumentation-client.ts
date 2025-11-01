@@ -4,43 +4,55 @@ import posthog from 'posthog-js';
 
 const initPostHog = () => {
   const key = process.env.NEXT_PUBLIC_POSTHOG_KEY;
-  const host = process.env.NEXT_PUBLIC_POSTHOG_HOST;
+  const host = process.env.NEXT_PUBLIC_POSTHOG_HOST || 'https://us.i.posthog.com';
+  const isBrowser = typeof window !== 'undefined';
+  const isProd = process.env.NODE_ENV === 'production';
+  const allowedHosts = ['theclippingcompany.com', 'www.theclippingcompany.com'];
 
-  if (!key) {
-    if (typeof window !== 'undefined') {
-      // expose the module to the console so `posthog.capture(...)` won't throw
-      (window as any).posthog = posthog;
-      if (process.env.NODE_ENV !== 'production') console.warn('[PostHog] NEXT_PUBLIC_POSTHOG_KEY not set');
+  if (!isBrowser) return; // SSR guard
+
+  const currentHost = window.location.hostname;
+
+  // 🚫 Skip initialization if not production or not on your live domain
+  if (!isProd || !allowedHosts.includes(currentHost)) {
+    if (process.env.NODE_ENV !== 'production') {
+      console.info(`[PostHog] Skipped on ${currentHost} (${process.env.NODE_ENV})`);
     }
+    // Optional: create dummy posthog object so console calls don't break
+    (window as any).posthog = {
+      capture: () => {},
+      identify: () => {},
+      reset: () => {},
+      opt_out_capturing: () => {},
+      opt_in_capturing: () => {},
+      isDisabled: true,
+    };
     return;
   }
 
-  // init only once
+  // ✅ Avoid re-init
   if ((window as any).__posthog_initialized) return;
   (window as any).__posthog_initialized = true;
 
+  if (!key) {
+    console.warn('[PostHog] Missing NEXT_PUBLIC_POSTHOG_KEY');
+    return;
+  }
+
   try {
-    posthog.init(key as string, {
-      api_host: host || 'https://app.posthog.com',
+    posthog.init(key, {
+      api_host: host,
       person_profiles: 'identified_only',
       capture_pageview: true,
       capture_pageleave: true,
       autocapture: true,
       loaded: (posthogInstance) => {
-        // Expose PostHog globally for console access
-        if (typeof window !== 'undefined') {
-          (window as any).posthog = posthogInstance;
-        }
-        if (process.env.NODE_ENV !== 'production') {
-          console.info('[PostHog] ✅ Initialized successfully', { key, host });
-        }
-      }
+        (window as any).posthog = posthogInstance;
+        console.info('[PostHog] ✅ Initialized (production)', { host, key });
+      },
     });
   } catch (err) {
-    if (typeof window !== 'undefined') {
-      // keep error logging available in all environments
-      console.error('[PostHog] init error', err);
-    }
+    console.error('[PostHog] init error', err);
   }
 };
 
