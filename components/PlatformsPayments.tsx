@@ -1,5 +1,7 @@
 "use client";
 
+import { motion } from "framer-motion";
+
 export default function PlatformsPayments() {
   const platforms = [
     { name: "TikTok", icon: "M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z" },
@@ -20,74 +22,103 @@ export default function PlatformsPayments() {
   ];
 
   return (
-    <section className="relative w-full py-12 sm:py-16 md:py-20 lg:py-24 overflow-hidden">
+    <section className="relative w-full pt-40 sm:pt-48 md:pt-56 lg:pt-64 xl:pt-72 pb-20 sm:pb-24 md:pb-28 lg:pb-32 overflow-hidden">
       <div className="relative w-full px-4 sm:px-6 lg:px-12 xl:px-16 z-10">
         
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 sm:gap-16 md:gap-20 lg:gap-32 xl:gap-48">
-          {/* Platforms Section - Left Aligned */}
-          <div className="lg:pr-8 xl:pr-16">
-            <div className="flex flex-col items-start mb-8 sm:mb-10 md:mb-12">
-              <h3 className="text-white/40 text-xs sm:text-sm md:text-base font-light tracking-[0.2em] uppercase mb-4 sm:mb-5 md:mb-6">
-                Platforms we work with
-              </h3>
-              <h2 className="text-white/80 text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light leading-tight">
-From TikTok to Instagram Reels, we help you stand out and win on every platform.              </h2>
+        <div className="flex flex-col gap-32 sm:gap-40 md:gap-48 lg:gap-56 max-w-6xl mx-auto">
+          {/* Platforms Section */}
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            className="relative"
+          >
+            <div className="flex flex-col items-start mb-10 sm:mb-12 md:mb-14 lg:mb-16">
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm mb-6 sm:mb-7 md:mb-8">
+                <div className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
+                <span className="text-xs sm:text-sm text-white/40 font-light tracking-[0.15em] uppercase">
+                  Platforms we work with
+                </span>
+              </div>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-light leading-[1.2] text-white/90 mb-4 sm:mb-5 md:mb-6">
+                From TikTok to Instagram Reels,<br />we help you stand out and win<br />on every platform.
+              </h2>
+              <div className="w-20 h-px bg-gradient-to-r from-white/20 to-transparent mt-2" />
             </div>
             
-            <div className="flex flex-wrap items-center gap-4 sm:gap-5 md:gap-6">
-              {platforms.map((platform) => (
-                <div
+            <div className="flex flex-wrap items-center gap-5 sm:gap-6 md:gap-7 lg:gap-8">
+              {platforms.map((platform, index) => (
+                <motion.div
                   key={platform.name}
-                  className="group relative flex items-center gap-2 sm:gap-2.5 md:gap-3 px-0 transition-all duration-300"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                  className="group relative flex items-center gap-3 sm:gap-3.5 md:gap-4 px-0 transition-all duration-300"
                 >
-                  <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-11 md:h-11 lg:w-12 lg:h-12 flex items-center justify-center rounded-lg bg-white/5 backdrop-blur-sm border border-white/10 group-hover:bg-white/10 group-hover:border-white/20 transition-all duration-300">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-13 md:h-13 lg:w-14 lg:h-14 flex items-center justify-center rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 group-hover:bg-white/10 group-hover:border-white/20 group-hover:shadow-[0_0_30px_rgba(255,255,255,0.1)] transition-all duration-300">
                     <svg
-                      className="w-4 h-4 sm:w-5 sm:h-5 md:w-5.5 md:h-5.5 lg:w-6 lg:h-6 fill-white/70 group-hover:fill-white transition-all duration-300"
+                      className="w-5 h-5 sm:w-6 sm:h-6 md:w-6.5 md:h-6.5 lg:w-7 lg:h-7 fill-white/70 group-hover:fill-white transition-all duration-300"
                       viewBox="0 0 24 24"
                     >
                       <path d={platform.icon} />
                     </svg>
                   </div>
-                  <span className="text-white/50 text-sm sm:text-base md:text-lg font-light tracking-wide group-hover:text-white/70 transition-colors duration-300">
+                  <span className="text-white/50 text-base sm:text-lg md:text-xl font-light tracking-wide group-hover:text-white/80 transition-colors duration-300">
                     {platform.name}
                   </span>
-                </div>
+                </motion.div>
               ))}
             </div>
-          </div>
+          </motion.div>
 
-          {/* Payment Systems Section - Right Aligned */}
-          <div className="lg:pl-12 xl:pl-20">
-            <div className="flex flex-col items-start mb-8 sm:mb-10 md:mb-12">
-              <h3 className="text-white/40 text-xs sm:text-sm md:text-base font-light tracking-[0.2em] uppercase mb-4 sm:mb-5 md:mb-6">
-                We pay through trusted payment systems
-              </h3>
-              <h2 className="text-white/80 text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light leading-tight">
-                Your transactions are protected through industry-standard security and reliable payment gateways.
+          {/* Payment Systems Section */}
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+            className="relative"
+          >
+            <div className="flex flex-col items-start mb-10 sm:mb-12 md:mb-14 lg:mb-16">
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm mb-6 sm:mb-7 md:mb-8">
+                <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
+                <span className="text-xs sm:text-sm text-white/40 font-light tracking-[0.15em] uppercase">
+                  We pay through trusted payment systems
+                </span>
+              </div>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-light leading-[1.2] text-white/90 mb-4 sm:mb-5 md:mb-6">
+                Your transactions are protected<br />through industry-standard security<br />and reliable payment gateways.
               </h2>
+              <div className="w-20 h-px bg-gradient-to-r from-white/20 to-transparent mt-2" />
             </div>
             
-            <div className="flex flex-wrap items-center gap-4 sm:gap-5 md:gap-6">
-              {payments.map((payment) => (
-                <div
+            <div className="flex flex-wrap items-center gap-5 sm:gap-6 md:gap-7 lg:gap-8">
+              {payments.map((payment, index) => (
+                <motion.div
                   key={payment.name}
-                  className="group relative flex items-center gap-2 sm:gap-2.5 md:gap-3 px-0 transition-all duration-300"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                  className="group relative flex items-center gap-3 sm:gap-3.5 md:gap-4 px-0 transition-all duration-300"
                 >
-                  <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-11 md:h-11 lg:w-12 lg:h-12 flex items-center justify-center rounded-lg bg-white/5 backdrop-blur-sm border border-white/10 group-hover:bg-white/10 group-hover:border-white/20 transition-all duration-300">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-13 md:h-13 lg:w-14 lg:h-14 flex items-center justify-center rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 group-hover:bg-white/10 group-hover:border-white/20 group-hover:shadow-[0_0_30px_rgba(255,255,255,0.1)] transition-all duration-300">
                     <svg
-                      className="w-4 h-4 sm:w-5 sm:h-5 md:w-5.5 md:h-5.5 lg:w-6 lg:h-6 fill-white/70 group-hover:fill-white transition-all duration-300"
+                      className="w-5 h-5 sm:w-6 sm:h-6 md:w-6.5 md:h-6.5 lg:w-7 lg:h-7 fill-white/70 group-hover:fill-white transition-all duration-300"
                       viewBox="0 0 24 24"
                     >
                       <path d={payment.icon} />
                     </svg>
                   </div>
-                  <span className="text-white/50 text-sm sm:text-base md:text-lg font-light tracking-wide group-hover:text-white/70 transition-colors duration-300">
+                  <span className="text-white/50 text-base sm:text-lg md:text-xl font-light tracking-wide group-hover:text-white/80 transition-colors duration-300">
                     {payment.name}
                   </span>
-                </div>
+                </motion.div>
               ))}
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
