@@ -6,14 +6,6 @@ import { supabase } from "@/lib/supabase";
 import posthog from "@/lib/instrumentation-client";
 import { AvatarCircles } from "@/components/ui/avatar-circles";
 import { RainbowButton } from "@/components/ui/rainbow-button";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
 
 const avatarUrls = [
   {
@@ -44,7 +36,7 @@ const avatarUrls = [
 
 export default function HeaderWaitlist() {
   const waitlistCount = useRealtimeWaitlist();
-  const [open, setOpen] = useState(false);
+  const [showInput, setShowInput] = useState(false);
   const [email, setEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitMessage, setSubmitMessage] = useState("");
@@ -82,7 +74,7 @@ export default function HeaderWaitlist() {
         posthog.capture("waitlist_joined", { email: email.trim().toLowerCase() });
         setEmail("");
         setTimeout(() => {
-          setOpen(false);
+          setShowInput(false);
           setSubmitMessage("");
         }, 2000);
       }
@@ -111,94 +103,84 @@ export default function HeaderWaitlist() {
             </span>
           </div>
 
-          <Dialog open={open} onOpenChange={setOpen}>
-            <DialogTrigger asChild>
-              <RainbowButton className="px-6 sm:px-8 md:px-10 h-8 sm:h-9">
+          <div className="relative flex items-center justify-center">
+            {!showInput ? (
+              <RainbowButton 
+                onClick={() => setShowInput(true)}
+                className="px-6 sm:px-8 md:px-10 h-8 sm:h-9"
+              >
                 Join Waitlist
               </RainbowButton>
-            </DialogTrigger>
-            
-            <DialogContent className="w-full max-w-lg bg-slate-900/40 border border-white/20 p-0 overflow-hidden backdrop-blur-2xl shadow-2xl">
-              <div className="relative">
-                {/* Subtle Gradient Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-white/5" />
-                
-                {/* Content */}
-                <div className="relative p-8 sm:p-10">
-                  <DialogHeader className="space-y-3">
-                    <DialogTitle className="text-white text-3xl font-light tracking-tight">
-                      Join the waitlist
-                    </DialogTitle>
-                    <DialogDescription className="text-gray-400 text-base font-light leading-relaxed">
-                      Get early access and exclusive updates when we launch.
-                    </DialogDescription>
-                  </DialogHeader>
-                  
-                  <form onSubmit={handleSubmit} className="mt-10 space-y-6">
-                    {/* Email Input */}
-                    <div className="relative group">
-                      <div className="relative bg-white/5 backdrop-blur-xl rounded-2xl border border-white/10 group-hover:border-white/20 group-focus-within:border-white/30 transition-all duration-300">
-                        <input
-                          id="email"
-                          type="email"
-                          value={email}
-                          onChange={(e) => setEmail(e.target.value)}
-                          className="
-                            w-full h-14 px-5
-                            bg-transparent
-                            text-white placeholder:text-gray-500
-                            text-base font-normal antialiased
-                            rounded-2xl
-                            focus:outline-none
-                            disabled:opacity-50 disabled:cursor-not-allowed
-                            transition-all duration-300
-                          "
-                          placeholder="Enter your email address"
-                          required
-                          disabled={isSubmitting}
-                        />
-                      </div>
-                    </div>
-
-                    {/* Success/Error Messages */}
-                    {submitMessage && (
-                      <div className={`
-                        px-5 py-4 rounded-2xl text-sm font-medium
-                        backdrop-blur-xl border
-                        ${submitMessage.includes('Successfully') 
-                          ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20' 
-                          : 'bg-orange-500/10 text-orange-400 border-orange-500/20'}
-                        animate-in fade-in slide-in-from-top-3 duration-500
-                      `}>
-                        {submitMessage}
-                      </div>
-                    )}
-
-                    {/* Submit Button */}
-                    <RainbowButton
-                      type="submit"
+            ) : (
+              <form onSubmit={handleSubmit} className="flex flex-col items-center gap-3 w-full max-w-sm">
+                <div className="flex items-center gap-2 w-full">
+                  <div className="relative flex-1 group">
+                    <div className="absolute -inset-[1px] rounded-full bg-gradient-to-r from-orange-500/50 via-purple-500/50 to-orange-500/50 opacity-75 group-focus-within:opacity-100 transition-opacity duration-300" />
+                    <input
+                      type="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder="Enter your email"
+                      autoFocus
+                      required
                       disabled={isSubmitting}
-                      className="w-full h-14 text-base font-medium tracking-wide"
-                    >
-                      {isSubmitting ? (
-                        <div className="flex items-center gap-3">
-                          <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                          <span>Joining waitlist...</span>
-                        </div>
-                      ) : (
-                        <span>Join now →</span>
-                      )}
-                    </RainbowButton>
-                  </form>
+                      className="
+                        relative w-full h-8 sm:h-9
+                        px-4 sm:px-5
+                        bg-black/95 backdrop-blur-xl
+                        text-white placeholder:text-gray-500
+                        text-xs sm:text-sm font-normal antialiased
+                        rounded-full
+                        focus:outline-none
+                        disabled:opacity-50 disabled:cursor-not-allowed
+                        transition-all duration-300
+                      "
+                    />
+                  </div>
                   
-                  {/* Footer Note */}
-                  <p className="mt-6 text-center text-xs text-gray-500 font-light">
-                    We'll never share your email with anyone else.
-                  </p>
+                  <RainbowButton
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="h-8 sm:h-9 px-4 sm:px-5 text-xs sm:text-sm shrink-0"
+                  >
+                    {isSubmitting ? (
+                      <div className="flex items-center gap-2">
+                        <div className="w-3 h-3 sm:w-3.5 sm:h-3.5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                      </div>
+                    ) : (
+                      "Join →"
+                    )}
+                  </RainbowButton>
+                  
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setShowInput(false);
+                      setEmail("");
+                      setSubmitMessage("");
+                    }}
+                    className="h-8 sm:h-9 w-8 sm:w-9 flex items-center justify-center text-white/60 hover:text-white hover:bg-white/5 rounded-full transition-all duration-200 shrink-0"
+                  >
+                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </button>
                 </div>
-              </div>
-            </DialogContent>
-          </Dialog>
+
+                {submitMessage && (
+                  <div className={`
+                    px-4 py-2 rounded-full text-xs sm:text-sm font-medium
+                    ${submitMessage.includes('Successfully') 
+                      ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20' 
+                      : 'bg-orange-500/10 text-orange-400 border border-orange-500/20'}
+                    backdrop-blur-xl animate-in fade-in slide-in-from-top-2 duration-300
+                  `}>
+                    {submitMessage}
+                  </div>
+                )}
+              </form>
+            )}
+          </div>
 
             <AvatarCircles 
               avatarUrls={avatarUrls}
