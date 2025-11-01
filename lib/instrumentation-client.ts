@@ -7,7 +7,11 @@ const initPostHog = () => {
   const host = process.env.NEXT_PUBLIC_POSTHOG_HOST;
 
   if (!key) {
-    if (typeof window !== 'undefined') console.warn('[PostHog] NEXT_PUBLIC_POSTHOG_KEY not set');
+    if (typeof window !== 'undefined') {
+      // expose the module to the console so `posthog.capture(...)` won't throw
+      (window as any).posthog = posthog;
+      if (process.env.NODE_ENV !== 'production') console.warn('[PostHog] NEXT_PUBLIC_POSTHOG_KEY not set');
+    }
     return;
   }
 
@@ -33,7 +37,10 @@ const initPostHog = () => {
       }
     });
   } catch (err) {
-    if (typeof window !== 'undefined') console.error('[PostHog] init error', err);
+    if (typeof window !== 'undefined') {
+      // keep error logging available in all environments
+      console.error('[PostHog] init error', err);
+    }
   }
 };
 

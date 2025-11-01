@@ -4,6 +4,35 @@ import { useRealtimeWaitlist } from "@/hooks/useRealtimeWaitlist";
 import { useState } from "react";
 import { supabase } from "@/lib/supabase";
 import posthog from "@/lib/instrumentation-client";
+import { AvatarCircles } from "@/components/ui/avatar-circles";
+import { RainbowButton } from "@/components/ui/rainbow-button";
+
+const avatarUrls = [
+  {
+    imageUrl: "https://avatars.githubusercontent.com/u/16860528",
+    profileUrl: "https://github.com/dillionverma",
+  },
+  {
+    imageUrl: "https://avatars.githubusercontent.com/u/20110627",
+    profileUrl: "https://github.com/tomonarifeehan",
+  },
+  {
+    imageUrl: "https://avatars.githubusercontent.com/u/106103625",
+    profileUrl: "https://github.com/BankkRoll",
+  },
+  {
+    imageUrl: "https://avatars.githubusercontent.com/u/59228569",
+    profileUrl: "https://github.com/safethecode",
+  },
+  {
+    imageUrl: "https://avatars.githubusercontent.com/u/59442788",
+    profileUrl: "https://github.com/sanjay-mali",
+  },
+  {
+    imageUrl: "https://avatars.githubusercontent.com/u/89768406",
+    profileUrl: "https://github.com/itsarghyadas",
+  },
+];
 
 export default function HeaderWaitlist() {
   const waitlistCount = useRealtimeWaitlist();
@@ -76,38 +105,16 @@ export default function HeaderWaitlist() {
 
           <div className="relative flex items-center shrink-0">
               
-              <button 
+              <RainbowButton
                 onClick={() => setShowEmailInput(true)}
                 className={`
-                  relative flex items-center justify-center gap-1
-                  px-2.5 sm:px-3 md:px-4
-                  text-[10px] sm:text-xs md:text-sm font-medium antialiased
-                  text-white/90 bg-white/10 
-                  backdrop-blur-xl rounded-full 
-                  border border-white/20 
-                  hover:border-white/30 hover:bg-white/15 hover:shadow-[0_4px_20px_rgba(255,255,255,0.1)]
-                  active:scale-[0.98]
+                  px-6 sm:px-8 md:px-10 h-8 sm:h-9
                   transition-all duration-500 ease-out
                   ${showEmailInput ? 'opacity-0 scale-95 pointer-events-none' : 'opacity-100 scale-100'}
                 `}
-                style={{ minHeight: 0, height: '24px', display: 'flex', alignItems: 'center' }}
               >
-                <span className="absolute inset-0 bg-gradient-to-r from-white/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-full" />
-                
-                <span className="relative whitespace-nowrap" style={{ lineHeight: '1', display: 'flex', alignItems: 'center' }}>Join Waitlist</span>
-                
-                <div className="relative w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full bg-gradient-to-br from-slate-800 to-slate-900 flex items-center justify-center border border-white/10 shadow-sm">
-                  <svg 
-                    className="w-1.5 h-1.5 sm:w-2 sm:h-2 text-white/80 group-hover:translate-x-0.5 transition-transform duration-200" 
-                    fill="none" 
-                    viewBox="0 0 24 24" 
-                    stroke="currentColor" 
-                    strokeWidth="2.5"
-                  >
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-                  </svg>
-                </div>
-              </button>
+                Join Waitlist
+              </RainbowButton>
 
               <div 
                 className={`
@@ -211,33 +218,10 @@ export default function HeaderWaitlist() {
               </div>
             </div>
 
-            <div className="flex items-center justify-center -space-x-1 sm:-space-x-1.5">
-              <img 
-                src="https://i.pravatar.cc/150?img=1" 
-                alt="User avatar" 
-                className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 lg:w-8 lg:h-8 rounded-full border-2 border-black object-cover"
-              />
-              <img 
-                src="https://i.pravatar.cc/150?img=2" 
-                alt="User avatar" 
-                className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 lg:w-8 lg:h-8 rounded-full border-2 border-black object-cover"
-              />
-              <img 
-                src="https://i.pravatar.cc/150?img=3" 
-                alt="User avatar" 
-                className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 lg:w-8 lg:h-8 rounded-full border-2 border-black object-cover"
-              />
-              <img 
-                src="https://i.pravatar.cc/150?img=4" 
-                alt="User avatar" 
-                className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 lg:w-8 lg:h-8 rounded-full border-2 border-black object-cover"
-              />
-              <img 
-                src="https://i.pravatar.cc/150?img=5" 
-                alt="User avatar" 
-                className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 lg:w-8 lg:h-8 rounded-full border-2 border-black object-cover"
-              />
-            </div>
+            <AvatarCircles 
+              avatarUrls={avatarUrls}
+              className="justify-center"
+            />
           </div>
         </div>
       </div>

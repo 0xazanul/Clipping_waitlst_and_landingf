@@ -34,7 +34,9 @@ export default function VideoMetricsBackground({ onJoinWaitlist }: VideoMetricsB
     const video = e.currentTarget;
     const progress = (video.currentTime / video.duration) * 100;
     setVideoProgress(progress);
-    console.log(`Video time: ${video.currentTime.toFixed(2)}s / ${video.duration.toFixed(2)}s - Progress: ${progress.toFixed(2)}%`);
+    if (process.env.NODE_ENV !== 'production') {
+      console.debug(`Video time: ${video.currentTime.toFixed(2)}s / ${video.duration.toFixed(2)}s - Progress: ${progress.toFixed(2)}%`);
+    }
   };
 
   return (
