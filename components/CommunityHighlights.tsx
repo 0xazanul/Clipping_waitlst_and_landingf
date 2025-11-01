@@ -44,8 +44,21 @@ export default function CommunityHighlights() {
         {/* Diagonal Spotlight Gradient */}
         <div className="absolute inset-0 bg-gradient-to-br from-white/[0.03] via-transparent to-transparent" />
         
+        {/* Single Rotating Radar Line */}
+        <div className="absolute top-[60%] left-1/2 -translate-x-1/2 -translate-y-1/2">
+          <div
+            className="absolute bottom-0 left-0 origin-bottom animate-radar-sweep"
+            style={{
+              width: '2px',
+              height: '50vh',
+              background: `linear-gradient(to top, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.3) 50%, transparent)`,
+              boxShadow: `0 0 15px rgba(255, 255, 255, 0.8), 0 0 30px rgba(255, 255, 255, 0.4)`,
+            }}
+          />
+        </div>
+        
         {/* Concentric Ripple Circles */}
-        <div className="absolute top-[70%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1200px] h-[1200px]">
+        <div className="absolute top-[60%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1200px] h-[1200px]">
           {[...Array(12)].map((_, i) => {
             const size = 150 + (i * 90); // Fixed pixel sizing: 150px, 240px, 330px, etc.
             const opacity = Math.max(0.02, 0.15 - i * 0.01); // Gradient attenuation
