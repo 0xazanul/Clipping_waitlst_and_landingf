@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { memo } from "react";
 
 interface HeroSectionProps {
-  onJoinWaitlist: () => void;
+  onJoinWaitlist?: () => void;
 }
 
 function HeroSection({ onJoinWaitlist }: HeroSectionProps) {

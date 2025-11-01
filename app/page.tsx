@@ -1,24 +1,20 @@
 "use client";
 
-import { useState } from "react";
 import HeroSection from "@/components/HeroSection";
-import HowItWorks from "@/components/HowItWorks";
-import WaitlistModal from "@/components/WaitlistModal";
 import { Toaster } from "sonner";
 import VideoMetricsBackground from "@/components/background/VideoMetricsBackground";
 import CommunityHighlights from "@/components/CommunityHighlights";
+import PlatformsPayments from "@/components/PlatformsPayments";
 
 export default function Home() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
   return (
-    <div className="relative min-h-screen text-white">
-      <VideoMetricsBackground onJoinWaitlist={() => setIsModalOpen(true)} />
+    <div className="relative min-h-screen text-white overflow-x-hidden">
+      <VideoMetricsBackground />
       
       <CommunityHighlights />
       
-      <div className="relative">
-        
+      <PlatformsPayments />
+
       <Toaster
         position="top-center"
         theme="dark"
@@ -32,14 +28,7 @@ export default function Home() {
         }}
       />
 
-      <HeroSection onJoinWaitlist={() => setIsModalOpen(true)} />
-
-      <HowItWorks />
-
-      <WaitlistModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-      />
+      <HeroSection />
 
       <footer className="w-full border-t border-white/[0.05] mt-12 sm:mt-16 md:mt-20 lg:mt-32">
         <div className="max-w-4xl mx-auto px-4 md:px-6 py-8 sm:py-12 md:py-16 lg:py-20 flex flex-col items-center gap-6 sm:gap-8 md:gap-10">
@@ -74,7 +63,6 @@ export default function Home() {
           </p>
         </div>
       </footer>
-      </div>
     </div>
   );
 }

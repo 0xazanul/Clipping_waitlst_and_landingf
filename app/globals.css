@@ -169,10 +169,16 @@
   *:not(.fixed-youtube-bg):not(.fixed-youtube-bg *) {
     @apply border-border outline-ring/50;
   }
+  
+  html {
+    overflow-x: hidden;
+  }
+  
   body {
     @apply bg-background text-foreground antialiased;
     font-feature-settings: "kern" 1, "liga" 1;
     letter-spacing: 0.01em;
+    overflow-x: hidden;
   }
 
   /* Fluid Typography System */
@@ -288,6 +294,21 @@
       opacity: 1;
       transform: translateY(0);
     }
+  }
+
+  /* Modal Gradient Animation */
+  @keyframes gradient-x {
+    0%, 100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+
+  .animate-gradient-x {
+    background-size: 200% 200%;
+    animation: gradient-x 3s ease infinite;
   }
 
   @media (max-width: 1280px) {

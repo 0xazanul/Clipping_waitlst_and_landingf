@@ -43,6 +43,11 @@ const ppEditorial = localFont({
 export const metadata: Metadata = {
   title: "The Clipping Company",
   description: "Monetize your influence with authentic brand clips. Join creators earning today.",
+  viewport: {
+    width: "device-width",
+    initialScale: 1,
+    maximumScale: 5,
+  },
 };
 
 export default function RootLayout({

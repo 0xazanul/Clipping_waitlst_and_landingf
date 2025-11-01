@@ -96,9 +96,14 @@ export default function VideoMetricsBackground({ onJoinWaitlist }: VideoMetricsB
           
           <div className="bg-gradient-to-b from-black/80 via-slate-950/90 to-slate-900/80 flex-shrink-0 p-2 sm:p-3 md:p-4">
             <div className="flex items-start gap-2 sm:gap-3">
-              <div className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 rounded-full bg-gradient-to-br from-blue-500/70 via-indigo-500/70 to-purple-600/70 flex items-center justify-center shadow-lg flex-shrink-0">
-                <span className="text-white/80 font-bold text-xs sm:text-sm">TC</span>
+              <div className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 rounded-full bg-black flex items-center justify-center shadow-lg flex-shrink-0 overflow-hidden">
+                <img 
+                  src="/logos/bg.png" 
+                  alt="Channel Logo" 
+                  className="w-full h-full object-cover"
+                />
               </div>
+              
               <div className="flex-1 min-w-0">
                 <div className="flex items-start justify-between gap-2">
                   <div className="flex-1 min-w-0">

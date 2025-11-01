@@ -38,14 +38,14 @@ export default function CommunityHighlights() {
   ];
 
   return (
-    <section className="relative w-full py-32 sm:py-40 md:py-48 lg:py-56 overflow-visible">
+    <section className="relative w-full pt-32 sm:pt-40 md:pt-48 lg:pt-56 pb-32 sm:pb-40 md:pb-48 lg:pb-56 overflow-hidden">
       {/* Radial Ripple Effect Background */}
       <div className="absolute left-0 right-0 top-0 bottom-0 pointer-events-none">
         {/* Diagonal Spotlight Gradient */}
         <div className="absolute inset-0 bg-gradient-to-br from-white/[0.03] via-transparent to-transparent" />
         
         {/* Single Rotating Radar Line */}
-        <div className="absolute top-[60%] left-1/2 -translate-x-1/2 -translate-y-1/2">
+        <div className="absolute top-[65%] left-1/2 -translate-x-1/2 -translate-y-1/2">
           <div
             className="absolute bottom-0 left-0 origin-bottom animate-radar-sweep"
             style={{
@@ -58,7 +58,7 @@ export default function CommunityHighlights() {
         </div>
         
         {/* Concentric Ripple Circles */}
-        <div className="absolute top-[60%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1200px] h-[1200px]">
+        <div className="absolute top-[65%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[1200px] h-[100vw] max-h-[1200px]">
           {[...Array(12)].map((_, i) => {
             const size = 150 + (i * 90);
             const opacity = Math.max(0.02, 0.15 - i * 0.01);
@@ -88,7 +88,7 @@ export default function CommunityHighlights() {
         
         {/* Subtle radial gradient overlay */}
         <div 
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px]"
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[1000px] h-[90vw] max-h-[1000px]"
           style={{
             background: 'radial-gradient(circle, rgba(255,255,255,0.02) 0%, transparent 70%)',
           }}
@@ -110,7 +110,7 @@ export default function CommunityHighlights() {
               </span>
             </div>
 
-            <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light text-white tracking-tight">
+            <h2 className="text-lg sm:text-xl md:text-2xl lg:text-4xl font-light text-white tracking-tight leading-tight">
               Supercharge your company with community of
               <br />
               content creators
@@ -125,7 +125,7 @@ export default function CommunityHighlights() {
             {avatars.map((avatar) => (
               <div
                 key={avatar.id}
-                className={`absolute ${avatar.position} w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 lg:w-20 lg:h-20 rounded-full overflow-hidden border-2 border-white/10 backdrop-blur-sm transition-all duration-300 hover:scale-110 hover:border-white/30 hover:shadow-[0_0_30px_rgba(255,255,255,0.2)] animate-float`}
+                className={`absolute ${avatar.position} w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 rounded-full overflow-hidden border-2 border-white/10 backdrop-blur-sm transition-all duration-300 hover:scale-110 hover:border-white/30 hover:shadow-[0_0_30px_rgba(255,255,255,0.2)] animate-float`}
               >
                 <img
                   src={avatar.src}
@@ -138,10 +138,10 @@ export default function CommunityHighlights() {
             {logos.map((logo) => (
               <div
                 key={logo.id}
-                className={`absolute ${logo.position} w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-2xl ${logo.bgColor} border border-white/10 backdrop-blur-sm flex items-center justify-center transition-all duration-300 hover:scale-110 hover:border-white/30 hover:shadow-[0_0_30px_rgba(255,255,255,0.1)] animate-float`}
+                className={`absolute ${logo.position} w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-2xl ${logo.bgColor} border border-white/10 backdrop-blur-sm flex items-center justify-center transition-all duration-300 hover:scale-110 hover:border-white/30 hover:shadow-[0_0_30px_rgba(255,255,255,0.1)] animate-float`}
               >
                 <svg
-                  className="w-5 h-5 sm:w-6 sm:h-6 text-white/60"
+                  className="w-4 h-4 sm:w-5 sm:h-5 text-white/60"
                   fill="currentColor"
                   viewBox="0 0 24 24"
                 >
