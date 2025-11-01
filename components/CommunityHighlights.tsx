@@ -60,20 +60,28 @@ export default function CommunityHighlights() {
         {/* Concentric Ripple Circles */}
         <div className="absolute top-[60%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1200px] h-[1200px]">
           {[...Array(12)].map((_, i) => {
-            const size = 150 + (i * 90); // Fixed pixel sizing: 150px, 240px, 330px, etc.
-            const opacity = Math.max(0.02, 0.15 - i * 0.01); // Gradient attenuation
+            const size = 150 + (i * 90);
+            const opacity = Math.max(0.02, 0.15 - i * 0.01);
             
             return (
               <div
                 key={i}
-                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full"
+                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full overflow-hidden"
                 style={{
                   width: `${size}px`,
                   height: `${size}px`,
-                  border: `1px solid rgba(255, 255, 255, ${opacity})`,
-                  boxShadow: `0 0 ${20 - i}px rgba(255, 255, 255, ${opacity * 0.3})`,
                 }}
-              />
+              >
+                <div
+                  className="absolute inset-0 rounded-full"
+                  style={{
+                    border: `1px solid rgba(255, 255, 255, ${opacity})`,
+                    boxShadow: `0 0 ${20 - i}px rgba(255, 255, 255, ${opacity * 0.3})`,
+                    maskImage: 'linear-gradient(to bottom, white 0%, white 60%, transparent 100%)',
+                    WebkitMaskImage: 'linear-gradient(to bottom, white 0%, white 60%, transparent 100%)',
+                  }}
+                />
+              </div>
             );
           })}
         </div>
