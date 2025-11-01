@@ -6,6 +6,7 @@ import HowItWorks from "@/components/HowItWorks";
 import WaitlistModal from "@/components/WaitlistModal";
 import { Toaster } from "sonner";
 import VideoMetricsBackground from "@/components/background/VideoMetricsBackground";
+import CommunityHighlights from "@/components/CommunityHighlights";
 
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -13,6 +14,8 @@ export default function Home() {
   return (
     <div className="relative min-h-screen text-white">
       <VideoMetricsBackground onJoinWaitlist={() => setIsModalOpen(true)} />
+      
+      <CommunityHighlights />
       
       <div className="relative">
         

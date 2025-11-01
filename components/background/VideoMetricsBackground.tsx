@@ -41,14 +41,14 @@ export default function VideoMetricsBackground({ onJoinWaitlist }: VideoMetricsB
 
   return (
     <div 
-      className="w-full min-h-screen flex items-center justify-center"
+      className="w-full flex items-center justify-center mb-0 relative"
       style={{ 
-        zIndex: 10,
+        zIndex: 5,
       }}
     >
       <div className="w-full h-screen flex items-center justify-center p-0">
         <div 
-          className="relative bg-gradient-to-b from-black/80 via-slate-950/90 to-slate-900/80 w-full h-full flex flex-col"
+          className="relative bg-gradient-to-b from-black/80 via-slate-950/90 to-slate-900/80 w-full h-full flex flex-col overflow-hidden"
         >
           <div className="relative bg-gradient-to-br from-slate-950 via-slate-900 to-black flex-1 flex items-center justify-center px-3 sm:px-4 md:px-6 py-4 sm:py-6 md:py-8" style={{ minHeight: 0 }}>
             <video

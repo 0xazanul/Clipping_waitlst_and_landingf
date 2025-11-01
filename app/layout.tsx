@@ -60,7 +60,6 @@ export default function RootLayout({
 
         <div className="relative">
           <div className="relative z-20">
-            {/* PostHog client initializer - runs on the client and bootstraps posthog-js */}
             <PostHogInit />
             {children}
           </div>
