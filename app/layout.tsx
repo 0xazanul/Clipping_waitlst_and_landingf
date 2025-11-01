@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import PostHogInit from "@/components/PostHogInit";
 
 const ppEditorial = localFont({
   src: [
@@ -59,6 +60,8 @@ export default function RootLayout({
 
         <div className="relative">
           <div className="relative z-20">
+            {/* PostHog client initializer - runs on the client and bootstraps posthog-js */}
+            <PostHogInit />
             {children}
           </div>
         </div>

@@ -14,6 +14,7 @@ export default function VideoMetricsBackground({ onJoinWaitlist }: VideoMetricsB
   const [subscribers, setSubscribers] = useState(1850);
   const [earnings, setEarnings] = useState(47.5);
   const [isDesktop, setIsDesktop] = useState(false);
+  const [videoProgress, setVideoProgress] = useState(0);
   const waitlistCount = useRealtimeWaitlist();
 
   useEffect(() => {
@@ -28,6 +29,13 @@ export default function VideoMetricsBackground({ onJoinWaitlist }: VideoMetricsB
     const interval = setInterval(animate, 200);
     return () => clearInterval(interval);
   }, []);
+
+  const handleVideoTimeUpdate = (e: React.SyntheticEvent<HTMLVideoElement>) => {
+    const video = e.currentTarget;
+    const progress = (video.currentTime / video.duration) * 100;
+    setVideoProgress(progress);
+    console.log(`Video time: ${video.currentTime.toFixed(2)}s / ${video.duration.toFixed(2)}s - Progress: ${progress.toFixed(2)}%`);
+  };
 
   return (
     <div 
@@ -46,6 +54,7 @@ export default function VideoMetricsBackground({ onJoinWaitlist }: VideoMetricsB
               loop
               muted
               playsInline
+              onTimeUpdate={handleVideoTimeUpdate}
               className="absolute inset-0 w-full h-full object-cover opacity-30"
               style={{ zIndex: 0 }}
             >
@@ -79,7 +88,7 @@ export default function VideoMetricsBackground({ onJoinWaitlist }: VideoMetricsB
             </div>
             
             <div className="absolute bottom-0 left-0 right-0 h-1 bg-white/5 pointer-events-none z-10">
-              <div className="yt-progress h-full bg-red-600/70 transition-all duration-300" style={{ width: '40%' }} />
+              <div className="yt-progress h-full bg-red-600/70 transition-all duration-100 ease-linear" style={{ width: `${videoProgress}%` }} />
             </div>
           </div>
           
