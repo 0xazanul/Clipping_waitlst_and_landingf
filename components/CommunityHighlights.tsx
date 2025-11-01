@@ -45,7 +45,7 @@ export default function CommunityHighlights() {
         <div className="absolute inset-0 bg-gradient-to-br from-white/[0.03] via-transparent to-transparent" />
         
         {/* Concentric Ripple Circles */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1200px] h-[1200px]">
+        <div className="absolute top-[70%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1200px] h-[1200px]">
           {[...Array(12)].map((_, i) => {
             const size = 150 + (i * 90); // Fixed pixel sizing: 150px, 240px, 330px, etc.
             const opacity = Math.max(0.02, 0.15 - i * 0.01); // Gradient attenuation
