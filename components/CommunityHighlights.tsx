@@ -96,13 +96,15 @@ export default function CommunityHighlights() {
         <div className="relative">
           {/* Text Content - Clean spacing */}
           <div className="relative text-center space-y-3 sm:space-y-4 md:space-y-5">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-white/[0.07] border border-white/[0.12] backdrop-blur-sm">
-              <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-orange-500 animate-pulse shadow-sm shadow-orange-500/50" />
-              <span className="text-[0.625rem] xs:text-xs sm:text-sm text-gray-300 font-light tracking-wide">
+            {/* Section Label */}
+            <div className="flex items-center justify-center gap-3 mb-4">
+              <div className="h-px w-8 bg-gradient-to-r from-transparent to-orange-500/30" />
+              <span className="text-xs font-medium tracking-[0.2em] uppercase text-orange-400/60">
                 The Clipping Company
               </span>
+              <div className="h-px w-8 bg-gradient-to-l from-transparent to-orange-500/30" />
             </div>
-
+            
             <h2 className="text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light text-white/95 tracking-tight leading-tight px-4 sm:px-6 md:px-0 max-w-3xl mx-auto">
               Supercharge your company with community of
               <br className="hidden xs:block" />

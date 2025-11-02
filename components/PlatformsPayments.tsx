@@ -42,7 +42,7 @@ export default function PlatformsPayments() {
             {/* Section Label */}
             <div className="flex items-center justify-center gap-3 mb-4">
               <div className="h-px w-8 bg-gradient-to-r from-transparent to-blue-500/30" />
-              <span className="text-[10px] font-medium tracking-[0.2em] uppercase text-blue-400/60">
+              <span className="text-xs font-medium tracking-[0.2em] uppercase text-blue-400/60">
                 Platforms
               </span>
               <div className="h-px w-8 bg-gradient-to-l from-transparent to-blue-500/30" />
@@ -107,7 +107,7 @@ export default function PlatformsPayments() {
             {/* Section Label */}
             <div className="flex items-center justify-center gap-3 mb-4">
               <div className="h-px w-8 bg-gradient-to-r from-transparent to-green-500/30" />
-              <span className="text-[10px] font-medium tracking-[0.2em] uppercase text-green-400/60">
+              <span className="text-xs font-medium tracking-[0.2em] uppercase text-green-400/60">
                 Payments
               </span>
               <div className="h-px w-8 bg-gradient-to-l from-transparent to-green-500/30" />

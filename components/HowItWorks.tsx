@@ -6,7 +6,7 @@ import { useState, useRef, useEffect } from "react";
 export default function HowItWorks() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
-  const [duration, setDuration] = useState(0);
+  const [duration, setDuration] = useState(50);
   const [isLoaded, setIsLoaded] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const playPromiseRef = useRef<Promise<void> | null>(null);
@@ -84,13 +84,16 @@ export default function HowItWorks() {
           className="relative"
         >
           <div className="flex flex-col items-center mb-10 sm:mb-12 md:mb-14 lg:mb-16 text-center">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm mb-5 sm:mb-6">
-              <div className="w-1.5 h-1.5 rounded-full bg-purple-500 animate-pulse" />
-              <span className="text-xs sm:text-sm text-white/40 font-light tracking-[0.15em] uppercase">
+            {/* Section Label */}
+            <div className="flex items-center justify-center gap-3 mb-4">
+              <div className="h-px w-8 bg-gradient-to-r from-transparent to-purple-500/30" />
+              <span className="text-xs font-medium tracking-[0.2em] uppercase text-purple-400/60">
                 How It Works
               </span>
+              <div className="h-px w-8 bg-gradient-to-l from-transparent to-purple-500/30" />
             </div>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light leading-[1.2] text-white/90 mb-4 sm:mb-5 max-w-3xl">
+            
+            <h2 className="text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light text-white/95 tracking-tight leading-tight mb-4 sm:mb-5 max-w-3xl">
               See how simple it is to get started<br />and grow your content
             </h2>
             <div className="w-20 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />

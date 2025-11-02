@@ -9,7 +9,7 @@ interface HeroSectionProps {
 
 function HeroSection({ onJoinWaitlist }: HeroSectionProps) {
   return (
-    <section className="relative min-h-[100svh] flex items-center justify-center">
+    <section className="relative">
       <div className="w-full h-full"></div>
     </section>
   );
