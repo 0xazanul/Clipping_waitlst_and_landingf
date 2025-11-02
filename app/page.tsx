@@ -5,6 +5,7 @@ import { Toaster } from "sonner";
 import VideoMetricsBackground from "@/components/background/VideoMetricsBackground";
 import CommunityHighlights from "@/components/CommunityHighlights";
 import PlatformsPayments from "@/components/PlatformsPayments";
+import HowItWorks from "@/components/HowItWorks";
 
 export default function Home() {
   return (
@@ -14,6 +15,8 @@ export default function Home() {
       <CommunityHighlights />
       
       <PlatformsPayments />
+
+      <HowItWorks />
 
       <Toaster
         position="top-center"

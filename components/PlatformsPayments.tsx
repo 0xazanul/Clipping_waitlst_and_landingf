@@ -22,10 +22,10 @@ export default function PlatformsPayments() {
   ];
 
   return (
-    <section className="relative w-full pt-40 sm:pt-48 md:pt-56 lg:pt-64 xl:pt-72 pb-20 sm:pb-24 md:pb-28 lg:pb-32 overflow-hidden">
-      <div className="relative w-full px-4 sm:px-6 lg:px-12 xl:px-16 z-10">
+    <section className="relative w-full py-16 sm:py-20 md:py-24 lg:py-28 overflow-hidden">
+      <div className="relative w-full px-4 sm:px-6 lg:px-8 z-10">
         
-        <div className="flex flex-col gap-32 sm:gap-40 md:gap-48 lg:gap-56 max-w-6xl mx-auto">
+        <div className="flex flex-col gap-20 sm:gap-24 md:gap-28 lg:gap-32 max-w-5xl mx-auto">
           {/* Platforms Section */}
           <motion.div
             initial={{ opacity: 0, y: 40 }}
@@ -34,20 +34,20 @@ export default function PlatformsPayments() {
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
             className="relative"
           >
-            <div className="flex flex-col items-start mb-10 sm:mb-12 md:mb-14 lg:mb-16">
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm mb-6 sm:mb-7 md:mb-8">
+            <div className="flex flex-col items-start mb-8 sm:mb-10 md:mb-12">
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm mb-4 sm:mb-5">
                 <div className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
                 <span className="text-xs sm:text-sm text-white/40 font-light tracking-[0.15em] uppercase">
                   Platforms we work with
                 </span>
               </div>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-light leading-[1.2] text-white/90 mb-4 sm:mb-5 md:mb-6">
+              <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light leading-[1.3] text-white/90 mb-3 sm:mb-4">
                 From TikTok to Instagram Reels,<br />we help you stand out and win<br />on every platform.
               </h2>
-              <div className="w-20 h-px bg-gradient-to-r from-white/20 to-transparent mt-2" />
+              <div className="w-16 h-px bg-gradient-to-r from-white/20 to-transparent" />
             </div>
             
-            <div className="flex flex-wrap items-center gap-5 sm:gap-6 md:gap-7 lg:gap-8">
+            <div className="flex flex-wrap items-center gap-4 sm:gap-5 md:gap-6">
               {platforms.map((platform, index) => (
                 <motion.div
                   key={platform.name}
@@ -55,17 +55,17 @@ export default function PlatformsPayments() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                  className="group relative flex items-center gap-3 sm:gap-3.5 md:gap-4 px-0 transition-all duration-300"
+                  className="group relative flex items-center gap-2.5 sm:gap-3 px-0 transition-all duration-300"
                 >
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-13 md:h-13 lg:w-14 lg:h-14 flex items-center justify-center rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 group-hover:bg-white/10 group-hover:border-white/20 group-hover:shadow-[0_0_30px_rgba(255,255,255,0.1)] transition-all duration-300">
+                  <div className="w-9 h-9 sm:w-10 sm:h-10 md:w-11 md:h-11 lg:w-12 lg:h-12 flex items-center justify-center rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 group-hover:bg-white/10 group-hover:border-white/20 group-hover:shadow-[0_0_30px_rgba(255,255,255,0.1)] transition-all duration-300">
                     <svg
-                      className="w-5 h-5 sm:w-6 sm:h-6 md:w-6.5 md:h-6.5 lg:w-7 lg:h-7 fill-white/70 group-hover:fill-white transition-all duration-300"
+                      className="w-4.5 h-4.5 sm:w-5 sm:h-5 md:w-5.5 md:h-5.5 lg:w-6 lg:h-6 fill-white/70 group-hover:fill-white transition-all duration-300"
                       viewBox="0 0 24 24"
                     >
                       <path d={platform.icon} />
                     </svg>
                   </div>
-                  <span className="text-white/50 text-base sm:text-lg md:text-xl font-light tracking-wide group-hover:text-white/80 transition-colors duration-300">
+                  <span className="text-white/50 text-sm sm:text-base md:text-lg font-light tracking-wide group-hover:text-white/80 transition-colors duration-300">
                     {platform.name}
                   </span>
                 </motion.div>
@@ -81,20 +81,20 @@ export default function PlatformsPayments() {
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
             className="relative"
           >
-            <div className="flex flex-col items-start mb-10 sm:mb-12 md:mb-14 lg:mb-16">
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm mb-6 sm:mb-7 md:mb-8">
+            <div className="flex flex-col items-start mb-8 sm:mb-10 md:mb-12">
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm mb-4 sm:mb-5">
                 <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
                 <span className="text-xs sm:text-sm text-white/40 font-light tracking-[0.15em] uppercase">
                   We pay through trusted payment systems
                 </span>
               </div>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-light leading-[1.2] text-white/90 mb-4 sm:mb-5 md:mb-6">
+              <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light leading-[1.3] text-white/90 mb-3 sm:mb-4">
                 Your transactions are protected<br />through industry-standard security<br />and reliable payment gateways.
               </h2>
-              <div className="w-20 h-px bg-gradient-to-r from-white/20 to-transparent mt-2" />
+              <div className="w-16 h-px bg-gradient-to-r from-white/20 to-transparent" />
             </div>
             
-            <div className="flex flex-wrap items-center gap-5 sm:gap-6 md:gap-7 lg:gap-8">
+            <div className="flex flex-wrap items-center gap-4 sm:gap-5 md:gap-6">
               {payments.map((payment, index) => (
                 <motion.div
                   key={payment.name}
@@ -102,17 +102,17 @@ export default function PlatformsPayments() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                  className="group relative flex items-center gap-3 sm:gap-3.5 md:gap-4 px-0 transition-all duration-300"
+                  className="group relative flex items-center gap-2.5 sm:gap-3 px-0 transition-all duration-300"
                 >
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-13 md:h-13 lg:w-14 lg:h-14 flex items-center justify-center rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 group-hover:bg-white/10 group-hover:border-white/20 group-hover:shadow-[0_0_30px_rgba(255,255,255,0.1)] transition-all duration-300">
+                  <div className="w-9 h-9 sm:w-10 sm:h-10 md:w-11 md:h-11 lg:w-12 lg:h-12 flex items-center justify-center rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 group-hover:bg-white/10 group-hover:border-white/20 group-hover:shadow-[0_0_30px_rgba(255,255,255,0.1)] transition-all duration-300">
                     <svg
-                      className="w-5 h-5 sm:w-6 sm:h-6 md:w-6.5 md:h-6.5 lg:w-7 lg:h-7 fill-white/70 group-hover:fill-white transition-all duration-300"
+                      className="w-4.5 h-4.5 sm:w-5 sm:h-5 md:w-5.5 md:h-5.5 lg:w-6 lg:h-6 fill-white/70 group-hover:fill-white transition-all duration-300"
                       viewBox="0 0 24 24"
                     >
                       <path d={payment.icon} />
                     </svg>
                   </div>
-                  <span className="text-white/50 text-base sm:text-lg md:text-xl font-light tracking-wide group-hover:text-white/80 transition-colors duration-300">
+                  <span className="text-white/50 text-sm sm:text-base md:text-lg font-light tracking-wide group-hover:text-white/80 transition-colors duration-300">
                     {payment.name}
                   </span>
                 </motion.div>
