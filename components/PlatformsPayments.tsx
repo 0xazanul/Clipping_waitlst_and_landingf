@@ -23,110 +23,139 @@ export default function PlatformsPayments() {
 
   return (
     <section className="relative w-full py-16 sm:py-20 md:py-24 lg:py-28 overflow-hidden">
+      {/* Ambient Background Effects */}
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-blue-500/[0.02] to-transparent" />
+      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/[0.03] rounded-full blur-3xl" />
+      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/[0.03] rounded-full blur-3xl" />
+      
       <div className="relative w-full px-4 sm:px-6 lg:px-8 z-10">
-        
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 lg:gap-40 xl:gap-48">
-            {/* Platforms Section - Left Side Top */}
-            <motion.div
-              initial={{ opacity: 0, x: -40 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-              className="relative lg:pr-16 xl:pr-20"
-            >
-              <div className="flex flex-col items-start mb-8 sm:mb-10 md:mb-12">
-                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm mb-4 sm:mb-5">
-                  <div className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
-                  <span className="text-xs sm:text-sm text-white/40 font-light tracking-[0.15em] uppercase">
-                    Platforms we work with
-                  </span>
-                </div>
-                <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light leading-[1.3] text-white/90 mb-3 sm:mb-4 tracking-wide">
-                  From TikTok to Instagram Reels,<br />we help you stand out and win<br />on every platform.
-                </h2>
-                <div className="w-16 h-px bg-gradient-to-r from-white/20 to-transparent" />
-              </div>
-            
-            <div className="flex flex-wrap items-center gap-4 sm:gap-5 md:gap-6">
+        <div className="max-w-6xl mx-auto">
+          
+          {/* Platforms Section */}
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="mb-20 lg:mb-24"
+          >
+            {/* Section Label */}
+            <div className="flex items-center justify-center gap-3 mb-4">
+              <div className="h-px w-8 bg-gradient-to-r from-transparent to-blue-500/30" />
+              <span className="text-[10px] font-medium tracking-[0.2em] uppercase text-blue-400/60">
+                Platforms
+              </span>
+              <div className="h-px w-8 bg-gradient-to-l from-transparent to-blue-500/30" />
+            </div>
+
+            {/* Main Heading */}
+            <h2 className="text-center text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light text-white/95 tracking-tight leading-tight mb-3">
+              Built for every platform
+            </h2>
+            <p className="text-center text-sm sm:text-base md:text-lg text-white/40 max-w-xl mx-auto mb-10 lg:mb-12">
+              From TikTok to Instagram Reels, we help you dominate across all social channels
+            </p>
+
+            {/* Premium Icon Grid */}
+            <div className="flex flex-wrap justify-center items-center gap-4 sm:gap-5 md:gap-6 max-w-3xl mx-auto">
               {platforms.map((platform, index) => (
                 <motion.div
                   key={platform.name}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                  className="group relative flex items-center gap-2.5 sm:gap-3 px-0 transition-all duration-300"
+                  transition={{ 
+                    duration: 0.5, 
+                    delay: index * 0.08,
+                    ease: [0.16, 1, 0.3, 1]
+                  }}
+                  className="group relative"
                 >
-                  <div className="w-9 h-9 sm:w-10 sm:h-10 md:w-11 md:h-11 lg:w-12 lg:h-12 flex items-center justify-center rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 group-hover:bg-white/10 group-hover:border-white/20 group-hover:shadow-[0_0_30px_rgba(255,255,255,0.1)] transition-all duration-300">
-                    <svg
-                      className="w-4.5 h-4.5 sm:w-5 sm:h-5 md:w-5.5 md:h-5.5 lg:w-6 lg:h-6 fill-white/70 group-hover:fill-white transition-all duration-300"
-                      viewBox="0 0 24 24"
-                    >
-                      <path d={platform.icon} />
-                    </svg>
-                  </div>
-                  <span className="text-white/50 text-sm sm:text-base md:text-lg font-light tracking-wide group-hover:text-white/80 transition-colors duration-300">
+                  {/* Glow Effect */}
+                  <div className="absolute inset-0 rounded-lg bg-gradient-to-br from-blue-500/0 via-purple-500/0 to-blue-500/0 group-hover:from-blue-500/20 group-hover:via-purple-500/10 group-hover:to-blue-500/20 blur-xl transition-all duration-500" />
+                  
+                  {/* Icon Only */}
+                  <svg
+                    className="relative w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 fill-white/30 group-hover:fill-white/70 group-hover:scale-110 transition-all duration-300"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d={platform.icon} />
+                  </svg>
+                  
+                  {/* Tooltip */}
+                  <div className="absolute -bottom-7 left-1/2 -translate-x-1/2 px-2 py-0.5 bg-black/80 backdrop-blur-sm text-white/90 text-[10px] font-medium rounded opacity-0 group-hover:opacity-100 transition-opacity duration-150 whitespace-nowrap pointer-events-none">
                     {platform.name}
-                  </span>
+                  </div>
                 </motion.div>
               ))}
             </div>
-            </motion.div>
+          </motion.div>
 
-            {/* Empty space on right for staggered layout */}
-            <div className="hidden lg:block"></div>
-            
-            {/* Empty space on left for staggered layout */}
-            <div className="hidden lg:block"></div>
+          {/* Elegant Divider */}
+          <div className="relative h-px max-w-xs mx-auto mb-20 lg:mb-24">
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent blur-sm" />
+          </div>
 
-            {/* Payment Systems Section - Right Side Bottom */}
-            <motion.div
-              initial={{ opacity: 0, x: 40 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
-              className="relative lg:pl-16 xl:pl-20"
-            >
-              <div className="flex flex-col items-start mb-8 sm:mb-10 md:mb-12">
-                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm mb-4 sm:mb-5">
-                  <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
-                  <span className="text-xs sm:text-sm text-white/40 font-light tracking-[0.15em] uppercase">
-                    We pay through trusted payment systems
-                  </span>
-                </div>
-                <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light leading-[1.3] text-white/90 mb-3 sm:mb-4 tracking-wide">
-                  Your transactions are protected<br />through industry-standard security and reliable payment gateways.
-                </h2>
-                <div className="w-16 h-px bg-gradient-to-r from-white/20 to-transparent" />
-              </div>
-            
-            <div className="flex flex-wrap items-center gap-4 sm:gap-5 md:gap-6">
+          {/* Payments Section */}
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+          >
+            {/* Section Label */}
+            <div className="flex items-center justify-center gap-3 mb-4">
+              <div className="h-px w-8 bg-gradient-to-r from-transparent to-green-500/30" />
+              <span className="text-[10px] font-medium tracking-[0.2em] uppercase text-green-400/60">
+                Payments
+              </span>
+              <div className="h-px w-8 bg-gradient-to-l from-transparent to-green-500/30" />
+            </div>
+
+            {/* Main Heading */}
+            <h2 className="text-center text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light text-white/95 tracking-tight leading-tight mb-3">
+              Secure payments, always
+            </h2>
+            <p className="text-center text-sm sm:text-base md:text-lg text-white/40 max-w-xl mx-auto mb-10 lg:mb-12">
+              Industry-standard security protecting every transaction
+            </p>
+
+            {/* Premium Icon Grid */}
+            <div className="flex flex-wrap justify-center items-center gap-4 sm:gap-5 md:gap-6 max-w-3xl mx-auto">
               {payments.map((payment, index) => (
                 <motion.div
                   key={payment.name}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                  className="group relative flex items-center gap-2.5 sm:gap-3 px-0 transition-all duration-300"
+                  transition={{ 
+                    duration: 0.5, 
+                    delay: index * 0.08,
+                    ease: [0.16, 1, 0.3, 1]
+                  }}
+                  className="group relative"
                 >
-                  <div className="w-9 h-9 sm:w-10 sm:h-10 md:w-11 md:h-11 lg:w-12 lg:h-12 flex items-center justify-center rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 group-hover:bg-white/10 group-hover:border-white/20 group-hover:shadow-[0_0_30px_rgba(255,255,255,0.1)] transition-all duration-300">
-                    <svg
-                      className="w-4.5 h-4.5 sm:w-5 sm:h-5 md:w-5.5 md:h-5.5 lg:w-6 lg:h-6 fill-white/70 group-hover:fill-white transition-all duration-300"
-                      viewBox="0 0 24 24"
-                    >
-                      <path d={payment.icon} />
-                    </svg>
-                  </div>
-                  <span className="text-white/50 text-sm sm:text-base md:text-lg font-light tracking-wide group-hover:text-white/80 transition-colors duration-300">
+                  {/* Glow Effect */}
+                  <div className="absolute inset-0 rounded-lg bg-gradient-to-br from-green-500/0 via-emerald-500/0 to-green-500/0 group-hover:from-green-500/20 group-hover:via-emerald-500/10 group-hover:to-green-500/20 blur-xl transition-all duration-500" />
+                  
+                  {/* Icon Only */}
+                  <svg
+                    className="relative w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 fill-white/30 group-hover:fill-white/70 group-hover:scale-110 transition-all duration-300"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d={payment.icon} />
+                  </svg>
+                  
+                  {/* Tooltip */}
+                  <div className="absolute -bottom-7 left-1/2 -translate-x-1/2 px-2 py-0.5 bg-black/80 backdrop-blur-sm text-white/90 text-[10px] font-medium rounded opacity-0 group-hover:opacity-100 transition-opacity duration-150 whitespace-nowrap pointer-events-none">
                     {payment.name}
-                  </span>
+                  </div>
                 </motion.div>
               ))}
             </div>
-            </motion.div>
-          </div>
+          </motion.div>
+          
         </div>
       </div>
     </section>
