@@ -34,9 +34,6 @@ export default function VideoMetricsBackground({ onJoinWaitlist }: VideoMetricsB
     const video = e.currentTarget;
     const progress = (video.currentTime / video.duration) * 100;
     setVideoProgress(progress);
-    if (process.env.NODE_ENV !== 'production') {
-      console.debug(`Video time: ${video.currentTime.toFixed(2)}s / ${video.duration.toFixed(2)}s - Progress: ${progress.toFixed(2)}%`);
-    }
   };
 
   return (
@@ -57,8 +54,9 @@ export default function VideoMetricsBackground({ onJoinWaitlist }: VideoMetricsB
               muted
               playsInline
               onTimeUpdate={handleVideoTimeUpdate}
-              className="absolute inset-0 w-full h-full object-cover opacity-30"
+              className="absolute inset-0 w-full h-full object-cover opacity-30 will-change-auto"
               style={{ zIndex: 0 }}
+              preload="auto"
             >
               <source src="/videos/video-bg.mp4" type="video/mp4" />
             </video>

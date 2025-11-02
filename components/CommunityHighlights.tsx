@@ -47,7 +47,7 @@ export default function CommunityHighlights() {
         {/* Single Rotating Radar Line - Positioned lower and contained */}
         <div className="absolute top-[85%] sm:top-[80%] left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-40">
           <div
-            className="absolute bottom-0 left-0 origin-bottom animate-radar-sweep"
+            className="absolute bottom-0 left-0 origin-bottom animate-radar-sweep will-change-transform"
             style={{
               width: '1.5px',
               height: 'min(40vh, 400px)',

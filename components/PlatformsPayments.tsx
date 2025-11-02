@@ -25,27 +25,28 @@ export default function PlatformsPayments() {
     <section className="relative w-full py-16 sm:py-20 md:py-24 lg:py-28 overflow-hidden">
       <div className="relative w-full px-4 sm:px-6 lg:px-8 z-10">
         
-        <div className="flex flex-col gap-20 sm:gap-24 md:gap-28 lg:gap-32 max-w-5xl mx-auto">
-          {/* Platforms Section */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            className="relative"
-          >
-            <div className="flex flex-col items-start mb-8 sm:mb-10 md:mb-12">
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm mb-4 sm:mb-5">
-                <div className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
-                <span className="text-xs sm:text-sm text-white/40 font-light tracking-[0.15em] uppercase">
-                  Platforms we work with
-                </span>
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 lg:gap-40 xl:gap-48">
+            {/* Platforms Section - Left Side Top */}
+            <motion.div
+              initial={{ opacity: 0, x: -40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+              className="relative lg:pr-16 xl:pr-20"
+            >
+              <div className="flex flex-col items-start mb-8 sm:mb-10 md:mb-12">
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm mb-4 sm:mb-5">
+                  <div className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
+                  <span className="text-xs sm:text-sm text-white/40 font-light tracking-[0.15em] uppercase">
+                    Platforms we work with
+                  </span>
+                </div>
+                <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light leading-[1.3] text-white/90 mb-3 sm:mb-4 tracking-wide">
+                  From TikTok to Instagram Reels,<br />we help you stand out and win<br />on every platform.
+                </h2>
+                <div className="w-16 h-px bg-gradient-to-r from-white/20 to-transparent" />
               </div>
-              <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light leading-[1.3] text-white/90 mb-3 sm:mb-4">
-                From TikTok to Instagram Reels,<br />we help you stand out and win<br />on every platform.
-              </h2>
-              <div className="w-16 h-px bg-gradient-to-r from-white/20 to-transparent" />
-            </div>
             
             <div className="flex flex-wrap items-center gap-4 sm:gap-5 md:gap-6">
               {platforms.map((platform, index) => (
@@ -71,28 +72,34 @@ export default function PlatformsPayments() {
                 </motion.div>
               ))}
             </div>
-          </motion.div>
+            </motion.div>
 
-          {/* Payment Systems Section */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
-            className="relative"
-          >
-            <div className="flex flex-col items-start mb-8 sm:mb-10 md:mb-12">
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm mb-4 sm:mb-5">
-                <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
-                <span className="text-xs sm:text-sm text-white/40 font-light tracking-[0.15em] uppercase">
-                  We pay through trusted payment systems
-                </span>
+            {/* Empty space on right for staggered layout */}
+            <div className="hidden lg:block"></div>
+            
+            {/* Empty space on left for staggered layout */}
+            <div className="hidden lg:block"></div>
+
+            {/* Payment Systems Section - Right Side Bottom */}
+            <motion.div
+              initial={{ opacity: 0, x: 40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+              className="relative lg:pl-16 xl:pl-20"
+            >
+              <div className="flex flex-col items-start mb-8 sm:mb-10 md:mb-12">
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm mb-4 sm:mb-5">
+                  <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
+                  <span className="text-xs sm:text-sm text-white/40 font-light tracking-[0.15em] uppercase">
+                    We pay through trusted payment systems
+                  </span>
+                </div>
+                <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light leading-[1.3] text-white/90 mb-3 sm:mb-4 tracking-wide">
+                  Your transactions are protected<br />through industry-standard security and reliable payment gateways.
+                </h2>
+                <div className="w-16 h-px bg-gradient-to-r from-white/20 to-transparent" />
               </div>
-              <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light leading-[1.3] text-white/90 mb-3 sm:mb-4">
-                Your transactions are protected<br />through industry-standard security<br />and reliable payment gateways.
-              </h2>
-              <div className="w-16 h-px bg-gradient-to-r from-white/20 to-transparent" />
-            </div>
             
             <div className="flex flex-wrap items-center gap-4 sm:gap-5 md:gap-6">
               {payments.map((payment, index) => (
@@ -118,7 +125,8 @@ export default function PlatformsPayments() {
                 </motion.div>
               ))}
             </div>
-          </motion.div>
+            </motion.div>
+          </div>
         </div>
       </div>
     </section>

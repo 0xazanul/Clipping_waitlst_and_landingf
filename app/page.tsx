@@ -1,11 +1,21 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import HeroSection from "@/components/HeroSection";
 import { Toaster } from "sonner";
 import VideoMetricsBackground from "@/components/background/VideoMetricsBackground";
-import CommunityHighlights from "@/components/CommunityHighlights";
-import PlatformsPayments from "@/components/PlatformsPayments";
-import HowItWorks from "@/components/HowItWorks";
+
+const CommunityHighlights = dynamic(() => import("@/components/CommunityHighlights"), {
+  loading: () => <div className="w-full h-96" />,
+});
+
+const PlatformsPayments = dynamic(() => import("@/components/PlatformsPayments"), {
+  loading: () => <div className="w-full h-96" />,
+});
+
+const HowItWorks = dynamic(() => import("@/components/HowItWorks"), {
+  loading: () => <div className="w-full h-96" />,
+});
 
 export default function Home() {
   return (
@@ -14,9 +24,9 @@ export default function Home() {
       
       <CommunityHighlights />
       
-      <PlatformsPayments />
-
       <HowItWorks />
+
+      <PlatformsPayments />
 
       <Toaster
         position="top-center"

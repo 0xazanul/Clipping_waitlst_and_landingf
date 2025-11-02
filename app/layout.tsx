@@ -48,6 +48,13 @@ export const metadata: Metadata = {
     initialScale: 1,
     maximumScale: 5,
   },
+  robots: {
+    index: true,
+    follow: true,
+  },
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({

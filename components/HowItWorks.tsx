@@ -27,7 +27,6 @@ export default function HowItWorks() {
           setIsPlaying(true);
         }
       } catch (error) {
-        console.log('Play/Pause interrupted:', error);
         playPromiseRef.current = null;
       }
     }
@@ -35,18 +34,14 @@ export default function HowItWorks() {
 
   const handleTimeUpdate = () => {
     if (videoRef.current) {
-      const newTime = videoRef.current.currentTime;
-      setCurrentTime(newTime);
-      console.log('Time updated:', newTime);
+      setCurrentTime(videoRef.current.currentTime);
     }
   };
 
   const handleLoadedMetadata = () => {
     if (videoRef.current) {
-      const videoDuration = videoRef.current.duration;
-      setDuration(videoDuration);
+      setDuration(videoRef.current.duration);
       setIsLoaded(true);
-      console.log('Video loaded, duration:', videoDuration);
     }
   };
 
@@ -58,8 +53,8 @@ export default function HowItWorks() {
     }
   };
 
-  const handleError = (e: React.SyntheticEvent<HTMLVideoElement, Event>) => {
-    console.error('Video error:', e);
+  const handleError = () => {
+    setIsLoaded(false);
   };
 
   const formatTime = (time: number) => {
@@ -104,22 +99,14 @@ export default function HowItWorks() {
                 className="w-full h-auto object-contain"
                 onTimeUpdate={handleTimeUpdate}
                 onLoadedMetadata={handleLoadedMetadata}
-                onLoadedData={() => console.log('Video data loaded')}
-                onCanPlay={() => console.log('Video can play')}
                 onError={handleError}
                 onEnded={() => {
                   setIsPlaying(false);
                   playPromiseRef.current = null;
                 }}
-                onPlay={() => {
-                  setIsPlaying(true);
-                  console.log('Video playing');
-                }}
-                onPause={() => {
-                  setIsPlaying(false);
-                  console.log('Video paused');
-                }}
-                preload="auto"
+                onPlay={() => setIsPlaying(true)}
+                onPause={() => setIsPlaying(false)}
+                preload="metadata"
                 playsInline
               >
                 <source src="/videos/video.mp4" type="video/mp4" />
@@ -128,13 +115,13 @@ export default function HowItWorks() {
 
               <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent p-3 sm:p-4">
                 {!isLoaded && (
-                  <div className="text-white text-xs mb-2">Loading video...</div>
+                  <div className="text-white text-xs mb-2"></div>
                 )}
                 <div className="relative w-full mb-3 sm:mb-4">
                   <div className="w-full h-1 sm:h-1.5 bg-white/20 rounded-lg overflow-hidden">
                     <div 
-                      className="h-full bg-white/80 transition-all duration-100"
-                      style={{ width: `${duration > 0 ? (currentTime / duration) * 100 : 0}%` }}
+                      className="h-full bg-white/80 will-change-transform"
+                      style={{ width: `${duration > 0 ? (currentTime / duration) * 100 : 0}%`, transition: 'width 0.1s linear' }}
                     />
                   </div>
                   <input
