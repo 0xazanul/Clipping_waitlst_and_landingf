@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { supabase } from "@/lib/supabase";
 
 interface EnhancedWaitlistModalProps {
@@ -19,6 +19,37 @@ export default function EnhancedWaitlistModal({ isOpen, onClose }: EnhancedWaitl
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
   const [error, setError] = useState("");
+
+  useEffect(() => {
+    if (isOpen) {
+      const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+      document.body.style.overflow = 'hidden';
+      document.body.style.position = 'fixed';
+      document.body.style.width = '100%';
+      document.body.style.top = `-${window.scrollY}px`;
+      if (scrollbarWidth > 0) {
+        document.body.style.paddingRight = `${scrollbarWidth}px`;
+      }
+    } else {
+      const scrollY = document.body.style.top;
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.width = '';
+      document.body.style.top = '';
+      document.body.style.paddingRight = '';
+      if (scrollY) {
+        window.scrollTo(0, parseInt(scrollY || '0') * -1);
+      }
+    }
+
+    return () => {
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.width = '';
+      document.body.style.top = '';
+      document.body.style.paddingRight = '';
+    };
+  }, [isOpen]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -123,11 +154,25 @@ export default function EnhancedWaitlistModal({ isOpen, onClose }: EnhancedWaitl
 
   if (!isOpen) return null;
 
+  const handleBackdropClick = (e: React.MouseEvent) => {
+    if (e.target === e.currentTarget) {
+      onClose();
+    }
+  };
+
+  const preventScroll = (e: React.WheelEvent | React.TouchEvent) => {
+    e.stopPropagation();
+  };
+
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 overflow-hidden">
+    <div 
+      className="fixed inset-0 z-50 flex items-center justify-center p-4"
+      onWheel={preventScroll}
+      onTouchMove={preventScroll}
+    >
       <div 
         className="absolute inset-0 bg-black/70 backdrop-blur-md"
-        onClick={onClose}
+        onClick={handleBackdropClick}
       />
       
       <div className="relative w-full max-w-md max-h-[90vh] overflow-y-auto bg-zinc-950 rounded-lg border border-zinc-800 shadow-2xl">

@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 
 export default function HowItWorks() {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -57,6 +57,16 @@ export default function HowItWorks() {
     setIsLoaded(false);
   };
 
+  const toggleFullscreen = () => {
+    if (videoRef.current) {
+      if (document.fullscreenElement) {
+        document.exitFullscreen();
+      } else {
+        videoRef.current.requestFullscreen();
+      }
+    }
+  };
+
   const formatTime = (time: number) => {
     const minutes = Math.floor(time / 60);
     const seconds = Math.floor(time % 60);
@@ -96,22 +106,36 @@ export default function HowItWorks() {
             <div className="relative overflow-hidden rounded-xl sm:rounded-2xl border border-white/10 shadow-2xl shadow-black/50 bg-black/40 backdrop-blur-sm">
               <video
                 ref={videoRef}
-                className="w-full h-auto object-contain"
+                className="w-full h-auto object-contain cursor-pointer"
                 onTimeUpdate={handleTimeUpdate}
                 onLoadedMetadata={handleLoadedMetadata}
                 onError={handleError}
+                onClick={togglePlay}
                 onEnded={() => {
                   setIsPlaying(false);
                   playPromiseRef.current = null;
                 }}
                 onPlay={() => setIsPlaying(true)}
                 onPause={() => setIsPlaying(false)}
-                preload="metadata"
+                preload="auto"
                 playsInline
               >
                 <source src="/videos/video.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
               </video>
+
+              {!isPlaying && (
+                <div 
+                  onClick={togglePlay}
+                  className="absolute inset-0 flex items-center justify-center cursor-pointer group pointer-events-none"
+                >
+                  <div className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 flex items-center justify-center rounded-full border-2 border-white/60 group-hover:border-white transition-all duration-300 group-hover:scale-110">
+                    <svg className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M8 5v14l11-7z" />
+                    </svg>
+                  </div>
+                </div>
+              )}
 
               <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent p-3 sm:p-4">
                 {!isLoaded && (
@@ -137,25 +161,20 @@ export default function HowItWorks() {
 
                 <div className="flex items-center justify-between gap-2 sm:gap-4">
                   <div className="flex items-center gap-2 sm:gap-3">
-                    <button
-                      onClick={togglePlay}
-                      className="w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition-colors"
-                    >
-                      {isPlaying ? (
-                        <svg className="w-4 h-4 sm:w-5 sm:h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
-                          <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z" />
-                        </svg>
-                      ) : (
-                        <svg className="w-4 h-4 sm:w-5 sm:h-5 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24">
-                          <path d="M8 5v14l11-7z" />
-                        </svg>
-                      )}
-                    </button>
-
                     <span className="text-white text-xs sm:text-sm font-light">
                       {formatTime(currentTime)} / {formatTime(duration)}
                     </span>
                   </div>
+
+                  <button
+                    onClick={toggleFullscreen}
+                    className="w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition-colors"
+                    title="Fullscreen"
+                  >
+                    <svg className="w-4 h-4 sm:w-5 sm:h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
+                    </svg>
+                  </button>
                 </div>
               </div>
             </div>
