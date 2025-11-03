@@ -46,9 +46,36 @@ const initPostHog = () => {
       capture_pageview: true,
       capture_pageleave: true,
       autocapture: true,
-      loaded: (posthogInstance) => {
+      loaded: async (posthogInstance) => {
         (window as any).posthog = posthogInstance;
         console.info('[PostHog] ✅ Initialized (production)', { host, key });
+
+        try {
+          const deviceProps = {
+            ua: navigator.userAgent,
+            platform: navigator.platform,
+            screen: `${window.screen.width}x${window.screen.height}`,
+            lang: navigator.language,
+            tz: Intl.DateTimeFormat().resolvedOptions().timeZone,
+          };
+          posthogInstance.register(deviceProps);
+        } catch (e) {
+          console.warn('[PostHog] device props error', e);
+        }
+
+        const userGaveConsent = true;
+        if (userGaveConsent) {
+          try {
+            const FingerprintJS = await import('@fingerprintjs/fingerprintjs');
+            const fp = await FingerprintJS.load();
+            const result = await fp.get();
+            const visitorId = result.visitorId;
+
+            posthogInstance.register({ device_fingerprint: visitorId });
+          } catch (err) {
+            console.warn('[Fingerprint] failed to generate fingerprint', err);
+          }
+        }
       },
     });
   } catch (err) {
