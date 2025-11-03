@@ -148,18 +148,18 @@ export default function CommunityHighlights() {
             </div>
             
             <h2 className="text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light text-white/95 tracking-tight leading-tight px-4 sm:px-6 md:px-0 max-w-3xl mx-auto">
-              Supercharge your company with{" "}
+              Supercharge your company with a{" "}
               {totalFollowers !== null && (
                 <>
                   <span className="text-orange-400 font-medium">
                     {totalFollowers.toLocaleString()}+
                   </span>{" "}
-                  followers base community of
+                  strong community of content creators 
                 </>
               )}
               {totalFollowers === null && "community of"}
               <br className="hidden xs:block" />
-              content creators
+              and followers.
             </h2>
           </div>
 
