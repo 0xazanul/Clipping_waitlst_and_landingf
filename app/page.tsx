@@ -17,6 +17,10 @@ const HowItWorks = dynamic(() => import("@/components/HowItWorks"), {
   loading: () => <div className="w-full h-96" />,
 });
 
+const FAQ = dynamic(() => import("@/components/FAQ"), {
+  loading: () => <div className="w-full h-96" />,
+});
+
 export default function Home() {
   return (
     <div className="relative min-h-screen text-white overflow-x-hidden">
@@ -42,6 +46,8 @@ export default function Home() {
       />
 
       <HeroSection />
+
+      <FAQ />
 
       <footer className="w-full border-t border-white/[0.05] mt-8">
         <div className="max-w-4xl mx-auto px-4 md:px-6 py-8 sm:py-10 md:py-12 flex flex-col items-center gap-6 sm:gap-8">
