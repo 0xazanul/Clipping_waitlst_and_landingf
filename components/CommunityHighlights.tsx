@@ -1,6 +1,48 @@
 "use client";
 
+import { useState, useEffect } from "react";
+import { supabase } from "@/lib/supabase";
+
 export default function CommunityHighlights() {
+  const [totalFollowers, setTotalFollowers] = useState<number | null>(null);
+
+  useEffect(() => {
+    const fetchTotalFollowers = async () => {
+      try {
+        if (!supabase) return;
+
+        const { data, error } = await supabase
+          .from("waitlist")
+          .select("follower_count");
+
+        if (error) {
+          console.error("Error fetching follower counts:", error);
+          return;
+        }
+
+        const total = data?.reduce((sum, row) => {
+          const count = parseInt(row.follower_count) || 0;
+          return sum + count;
+        }, 0) || 0;
+
+        setTotalFollowers(total);
+      } catch (err) {
+        console.error("Failed to fetch total followers:", err);
+      }
+    };
+
+    fetchTotalFollowers();
+  }, []);
+
+  const formatFollowerCount = (count: number) => {
+    if (count >= 1000000) {
+      return `${(count / 1000000).toFixed(1)}M`;
+    } else if (count >= 1000) {
+      return `${(count / 1000).toFixed(1)}K`;
+    }
+    return count.toString();
+  };
+
   const avatars = [
     { id: 1, src: "https://avatars.githubusercontent.com/u/16860528", position: "top-[8%] left-[8%] sm:top-[10%] sm:left-[15%]" },
     { id: 2, src: "https://avatars.githubusercontent.com/u/20110627", position: "top-[6%] left-[42%] sm:top-[8%] sm:left-[45%]" },
@@ -106,7 +148,16 @@ export default function CommunityHighlights() {
             </div>
             
             <h2 className="text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light text-white/95 tracking-tight leading-tight px-4 sm:px-6 md:px-0 max-w-3xl mx-auto">
-              Supercharge your company with community of
+              Supercharge your company with{" "}
+              {totalFollowers !== null && (
+                <>
+                  <span className="text-orange-400 font-medium">
+                    {totalFollowers.toLocaleString()}+
+                  </span>{" "}
+                  followers base community of
+                </>
+              )}
+              {totalFollowers === null && "community of"}
               <br className="hidden xs:block" />
               content creators
             </h2>
