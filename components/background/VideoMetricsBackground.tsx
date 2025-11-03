@@ -66,13 +66,13 @@ export default function VideoMetricsBackground({ onJoinWaitlist }: VideoMetricsB
             <div className="absolute inset-0 bg-gradient-to-tr from-purple-900/5 via-blue-900/3 to-cyan-900/5 pointer-events-none" style={{ zIndex: 2 }} />
             
             <div className="relative z-10 w-full max-w-2xl mx-auto text-center px-4">
-              <h1 className="font-sans text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extralight tracking-tight text-white/90 mb-3 sm:mb-4 md:mb-5">
+              <h1 className="font-sans text-4xl xs:text-3xl sm:text-3xl md:text-4xl lg:text-5xl font-extralight tracking-tight text-white/90 mb-3 sm:mb-4 md:mb-5">
                 make videos and
                 <br />
                 earn crypto
               </h1>
               
-              <p className="font-sans text-sm sm:text-base md:text-lg lg:text-xl text-gray-400/80 font-extralight mb-4 sm:mb-6 md:mb-8">
+              <p className="font-sans text-lg xs:text-base sm:text-base md:text-lg lg:text-xl text-gray-400/80 font-extralight mb-4 sm:mb-6 md:mb-8">
                 post brand content on your channel.
                 <br />
                 hit view targets. earn money.

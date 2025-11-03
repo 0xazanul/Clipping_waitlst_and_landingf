@@ -15,6 +15,7 @@ export default function EnhancedWaitlistModal({ isOpen, onClose }: EnhancedWaitl
     socialMediaLinks: [""],
     about: "",
     portfolioLink: "",
+    followerCount: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
@@ -85,6 +86,7 @@ export default function EnhancedWaitlistModal({ isOpen, onClose }: EnhancedWaitl
             social_media_link: socialMediaLinksString || null,
             about: formData.about || null,
             portfolio_link: formData.portfolioLink || null,
+            follower_count: formData.followerCount || null,
           },
         ]);
 
@@ -105,6 +107,7 @@ export default function EnhancedWaitlistModal({ isOpen, onClose }: EnhancedWaitl
         socialMediaLinks: [""],
         about: "",
         portfolioLink: "",
+        followerCount: "",
       });
 
       setTimeout(() => {
@@ -272,6 +275,19 @@ export default function EnhancedWaitlistModal({ isOpen, onClose }: EnhancedWaitl
                   value={formData.portfolioLink}
                   onChange={handleChange}
                   placeholder="https://yourportfolio.com"
+                  className="w-full px-3 py-2 bg-zinc-900 border border-zinc-800 rounded-md text-sm text-white text-left placeholder:text-zinc-500 focus:outline-none focus:ring-1 focus:ring-zinc-700 focus:border-zinc-700"
+                />
+              </div>
+
+              <div className="space-y-2 text-left">
+                <label className="block text-sm font-medium text-zinc-200 text-left">Follower Count</label>
+                <input
+                  type="number"
+                  name="followerCount"
+                  value={formData.followerCount}
+                  onChange={handleChange}
+                  placeholder="1000"
+                  min="0"
                   className="w-full px-3 py-2 bg-zinc-900 border border-zinc-800 rounded-md text-sm text-white text-left placeholder:text-zinc-500 focus:outline-none focus:ring-1 focus:ring-zinc-700 focus:border-zinc-700"
                 />
               </div>
