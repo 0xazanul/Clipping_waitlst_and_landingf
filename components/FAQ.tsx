@@ -44,11 +44,12 @@ export default function FAQ() {
           {/* Left Side - Heading and CTA */}
           <div className="lg:col-span-2 space-y-8 sm:space-y-10">
             <div className="space-y-4 sm:space-y-6">
-              <div className="flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full bg-purple-500/60" />
-                <span className="text-xs font-medium text-purple-400/60 tracking-[0.15em] uppercase">
-                  Clearly brief. SaaS analytics
+              <div className="flex items-center gap-3 mb-4">
+                <div className="h-px w-8 bg-gradient-to-r from-transparent to-purple-500/30" />
+                <span className="text-xs font-medium tracking-[0.2em] uppercase text-purple-400/60">
+                  The Clipping Company
                 </span>
+                <div className="h-px w-8 bg-gradient-to-l from-transparent to-purple-500/30" />
               </div>
               
               <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-5xl xl:text-6xl font-light text-white/95 tracking-tight leading-[1.1]">
