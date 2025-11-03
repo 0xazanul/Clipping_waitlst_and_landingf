@@ -1,24 +1,37 @@
 "use client";
 
-import posthog from 'posthog-js';
+import posthog from "posthog-js";
 
+/**
+ * Initializes PostHog analytics safely in production with:
+ * - Domain guard (only on allowed domains)
+ * - Automatic pageview/session tracking
+ * - Device fingerprint identification via FingerprintJS
+ * - Clean debug logs and error handling
+ */
 const initPostHog = () => {
   const key = process.env.NEXT_PUBLIC_POSTHOG_KEY;
-  const host = process.env.NEXT_PUBLIC_POSTHOG_HOST || 'https://us.i.posthog.com';
-  const isBrowser = typeof window !== 'undefined';
-  const isProd = process.env.NODE_ENV === 'production';
-  const allowedHosts = ['theclippingcompany.com', 'www.theclippingcompany.com'];
+  const host = process.env.NEXT_PUBLIC_POSTHOG_HOST || "https://us.i.posthog.com";
+  const isBrowser = typeof window !== "undefined";
+  const isProd = process.env.NODE_ENV === "production";
+  const allowedHosts = ["theclippingcompany.com", "www.theclippingcompany.com"];
 
-  if (!isBrowser) return; // SSR guard
+  console.log("[PostHog] 🔧 Init called", {
+    isBrowser,
+    isProd,
+    host,
+    currentHost: isBrowser ? window.location.hostname : "N/A",
+    hasKey: !!key,
+  });
+
+  // 🧱 SSR Guard
+  if (!isBrowser) return;
 
   const currentHost = window.location.hostname;
 
-  // 🚫 Skip initialization if not production or not on your live domain
+  // 🚫 Guard: only run on production & allowed domains
   if (!isProd || !allowedHosts.includes(currentHost)) {
-    if (process.env.NODE_ENV !== 'production') {
-      console.info(`[PostHog] Skipped on ${currentHost} (${process.env.NODE_ENV})`);
-    }
-    // Optional: create dummy posthog object so console calls don't break
+    console.info(`[PostHog] ⏩ Skipped (env: ${process.env.NODE_ENV}, host: ${currentHost})`);
     (window as any).posthog = {
       capture: () => {},
       identify: () => {},
@@ -30,26 +43,37 @@ const initPostHog = () => {
     return;
   }
 
-  // ✅ Avoid re-init
-  if ((window as any).__posthog_initialized) return;
+  // 🚫 Prevent duplicate initialization
+  if ((window as any).__posthog_initialized) {
+    console.log("[PostHog] ⚠️ Already initialized, skipping.");
+    return;
+  }
   (window as any).__posthog_initialized = true;
 
   if (!key) {
-    console.warn('[PostHog] Missing NEXT_PUBLIC_POSTHOG_KEY');
+    console.warn("[PostHog] ❌ Missing NEXT_PUBLIC_POSTHOG_KEY");
     return;
   }
+
+  console.log("[PostHog] 🚀 Starting initialization...");
 
   try {
     posthog.init(key, {
       api_host: host,
-      person_profiles: 'identified_only',
+      // ⚙️ Allow PostHog to create anonymous sessions so "Visitors" counts work
+      person_profiles: "always",
       capture_pageview: true,
-      capture_pageleave: true,
       autocapture: true,
+      capture_pageleave: true,
+      persistence: "localStorage+cookie",
       loaded: async (posthogInstance) => {
         (window as any).posthog = posthogInstance;
-        console.info('[PostHog] ✅ Initialized (production)', { host, key });
+        console.info("[PostHog] ✅ Initialized", {
+          host,
+          key: `${key.substring(0, 8)}...`,
+        });
 
+        // 🔍 Register device metadata for richer analytics
         try {
           const deviceProps = {
             ua: navigator.userAgent,
@@ -59,27 +83,42 @@ const initPostHog = () => {
             tz: Intl.DateTimeFormat().resolvedOptions().timeZone,
           };
           posthogInstance.register(deviceProps);
+          console.log("[PostHog] 🧠 Device properties registered:", deviceProps);
         } catch (e) {
-          console.warn('[PostHog] device props error', e);
+          console.warn("[PostHog] ⚠️ Device props error", e);
         }
 
+        // 🧩 Fire guaranteed pageview to ensure visitor/session counted
+        try {
+          posthogInstance.capture("$pageview", { url: window.location.href });
+          console.log("[PostHog] 📊 Pageview captured");
+        } catch (e) {
+          console.warn("[PostHog] ⚠️ Pageview capture failed", e);
+        }
+
+        // 🪪 Load FingerprintJS and identify visitor (with safe delay)
         const userGaveConsent = true;
         if (userGaveConsent) {
           try {
-            const FingerprintJS = await import('@fingerprintjs/fingerprintjs');
+            console.log("[PostHog] 🧩 Loading FingerprintJS...");
+            const FingerprintJS = await import("@fingerprintjs/fingerprintjs");
             const fp = await FingerprintJS.load();
             const result = await fp.get();
             const visitorId = result.visitorId;
 
-            posthogInstance.identify(visitorId, { device_fingerprint: visitorId });
+            // Identify visitor with fingerprint (delayed slightly to avoid conflicts)
+            setTimeout(() => {
+              posthogInstance.identify(visitorId, { device_fingerprint: visitorId });
+              console.log("[PostHog] 🆔 Identified visitor:", visitorId);
+            }, 800);
           } catch (err) {
-            console.warn('[Fingerprint] failed to generate fingerprint', err);
+            console.warn("[PostHog] ❗ Fingerprint generation failed", err);
           }
         }
       },
     });
   } catch (err) {
-    console.error('[PostHog] init error', err);
+    console.error("[PostHog] 💥 Init error:", err);
   }
 };
 
