@@ -57,6 +57,19 @@ export default function EnhancedWaitlistModal({ isOpen, onClose }: EnhancedWaitl
     setIsSubmitting(true);
     setError("");
 
+    const hasSocialMedia = formData.socialMediaLinks.some(link => link.trim());
+    if (!hasSocialMedia) {
+      setError("Please provide at least one social media link");
+      setIsSubmitting(false);
+      return;
+    }
+
+    if (!formData.portfolioLink.trim()) {
+      setError("Portfolio link is required");
+      setIsSubmitting(false);
+      return;
+    }
+
     try {
       if (typeof window !== 'undefined' && (window as any).posthog) {
         (window as any).posthog.capture('waitlist_form_submitted', {
@@ -229,7 +242,7 @@ export default function EnhancedWaitlistModal({ isOpen, onClose }: EnhancedWaitl
 
               <div className="space-y-2 text-left">
                 <div className="flex items-center justify-between">
-                  <label className="block text-sm font-medium text-zinc-200 text-left">Social Media</label>
+                  <label className="block text-sm font-medium text-zinc-200 text-left">Social Media *</label>
                   {formData.socialMediaLinks.length < 3 && (
                     <button
                       type="button"
@@ -243,32 +256,39 @@ export default function EnhancedWaitlistModal({ isOpen, onClose }: EnhancedWaitl
                     </button>
                   )}
                 </div>
-                {formData.socialMediaLinks.map((link, index) => (
-                  <div key={index} className="flex gap-2">
-                    <input
-                      type="url"
-                      value={link}
-                      onChange={(e) => handleSocialMediaChange(index, e.target.value)}
-                      placeholder="https://twitter.com/yourhandle"
-                      className="flex-1 px-3 py-2 bg-zinc-900 border border-zinc-800 rounded-md text-sm text-white text-left placeholder:text-zinc-500 focus:outline-none focus:ring-1 focus:ring-zinc-700 focus:border-zinc-700"
-                    />
-                    {formData.socialMediaLinks.length > 1 && (
-                      <button
-                        type="button"
-                        onClick={() => removeSocialMediaField(index)}
-                        className="px-2 text-zinc-400 hover:text-red-400 transition-colors"
-                      >
-                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                        </svg>
-                      </button>
-                    )}
-                  </div>
-                ))}
+                {formData.socialMediaLinks.map((link, index) => {
+                  const placeholders = [
+                    "https://instagram.com/yourhandle",
+                    "https://tiktok.com/@yourhandle",
+                    "https://youtube.com/@yourhandle"
+                  ];
+                  return (
+                    <div key={index} className="flex gap-2">
+                      <input
+                        type="url"
+                        value={link}
+                        onChange={(e) => handleSocialMediaChange(index, e.target.value)}
+                        placeholder={placeholders[index] || "https://twitter.com/yourhandle"}
+                        className="flex-1 px-3 py-2 bg-zinc-900 border border-zinc-800 rounded-md text-sm text-white text-left placeholder:text-zinc-500 focus:outline-none focus:ring-1 focus:ring-zinc-700 focus:border-zinc-700"
+                      />
+                      {formData.socialMediaLinks.length > 1 && (
+                        <button
+                          type="button"
+                          onClick={() => removeSocialMediaField(index)}
+                          className="px-2 text-zinc-400 hover:text-red-400 transition-colors"
+                        >
+                          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                          </svg>
+                        </button>
+                      )}
+                    </div>
+                  );
+                })}
               </div>
 
               <div className="space-y-2 text-left">
-                <label className="block text-sm font-medium text-zinc-200 text-left">Portfolio</label>
+                <label className="block text-sm font-medium text-zinc-200 text-left">Portfolio *</label>
                 <input
                   type="url"
                   name="portfolioLink"
