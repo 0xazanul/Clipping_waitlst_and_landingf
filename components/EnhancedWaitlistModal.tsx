@@ -70,6 +70,12 @@ export default function EnhancedWaitlistModal({ isOpen, onClose }: EnhancedWaitl
       return;
     }
 
+    if (!formData.followerCount.trim()) {
+      setError("Follower count is required");
+      setIsSubmitting(false);
+      return;
+    }
+
     try {
       if (typeof window !== 'undefined' && (window as any).posthog) {
         (window as any).posthog.capture('waitlist_form_submitted', {
@@ -220,7 +226,7 @@ export default function EnhancedWaitlistModal({ isOpen, onClose }: EnhancedWaitl
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  placeholder="John Doe"
+                  placeholder="naruto"
                   className="w-full px-3 py-2 bg-zinc-900 border border-zinc-800 rounded-md text-sm text-white text-left placeholder:text-zinc-500 focus:outline-none focus:ring-1 focus:ring-zinc-700 focus:border-zinc-700"
                 />
               </div>
@@ -235,14 +241,16 @@ export default function EnhancedWaitlistModal({ isOpen, onClose }: EnhancedWaitl
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  placeholder="you@example.com"
+                  placeholder="naruto@gmail.com"
                   className="w-full px-3 py-2 bg-zinc-900 border border-zinc-800 rounded-md text-sm text-white text-left placeholder:text-zinc-500 focus:outline-none focus:ring-1 focus:ring-zinc-700 focus:border-zinc-700"
                 />
               </div>
 
               <div className="space-y-2 text-left">
                 <div className="flex items-center justify-between">
-                  <label className="block text-sm font-medium text-zinc-200 text-left">Social Media *</label>
+                  <label className="block text-sm font-medium text-zinc-200 text-left">
+                    Social Media <span className="text-red-400">*</span>
+                  </label>
                   {formData.socialMediaLinks.length < 3 && (
                     <button
                       type="button"
@@ -258,9 +266,9 @@ export default function EnhancedWaitlistModal({ isOpen, onClose }: EnhancedWaitl
                 </div>
                 {formData.socialMediaLinks.map((link, index) => {
                   const placeholders = [
-                    "https://instagram.com/yourhandle",
-                    "https://tiktok.com/@yourhandle",
-                    "https://youtube.com/@yourhandle"
+                    "https://instagram.com/naruto",
+                    "https://tiktok.com/@naruto",
+                    "https://youtube.com/@naruto"
                   ];
                   return (
                     <div key={index} className="flex gap-2">
@@ -268,7 +276,7 @@ export default function EnhancedWaitlistModal({ isOpen, onClose }: EnhancedWaitl
                         type="url"
                         value={link}
                         onChange={(e) => handleSocialMediaChange(index, e.target.value)}
-                        placeholder={placeholders[index] || "https://twitter.com/yourhandle"}
+                        placeholder={placeholders[index] || "https://twitter.com/naruto"}
                         className="flex-1 px-3 py-2 bg-zinc-900 border border-zinc-800 rounded-md text-sm text-white text-left placeholder:text-zinc-500 focus:outline-none focus:ring-1 focus:ring-zinc-700 focus:border-zinc-700"
                       />
                       {formData.socialMediaLinks.length > 1 && (
@@ -288,19 +296,23 @@ export default function EnhancedWaitlistModal({ isOpen, onClose }: EnhancedWaitl
               </div>
 
               <div className="space-y-2 text-left">
-                <label className="block text-sm font-medium text-zinc-200 text-left">Portfolio *</label>
+                <label className="block text-sm font-medium text-zinc-200 text-left">
+                  Portfolio <span className="text-red-400">*</span>
+                </label>
                 <input
                   type="url"
                   name="portfolioLink"
                   value={formData.portfolioLink}
                   onChange={handleChange}
-                  placeholder="https://yourportfolio.com"
+                  placeholder="https://narutoportfolio.com"
                   className="w-full px-3 py-2 bg-zinc-900 border border-zinc-800 rounded-md text-sm text-white text-left placeholder:text-zinc-500 focus:outline-none focus:ring-1 focus:ring-zinc-700 focus:border-zinc-700"
                 />
               </div>
 
               <div className="space-y-2 text-left">
-                <label className="block text-sm font-medium text-zinc-200 text-left">Follower Count</label>
+                <label className="block text-sm font-medium text-zinc-200 text-left">
+                  Follower Count <span className="text-red-400">*</span>
+                </label>
                 <input
                   type="number"
                   name="followerCount"
