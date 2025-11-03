@@ -71,7 +71,7 @@ const initPostHog = () => {
             const result = await fp.get();
             const visitorId = result.visitorId;
 
-            posthogInstance.register({ device_fingerprint: visitorId });
+            posthogInstance.identify(visitorId, { device_fingerprint: visitorId });
           } catch (err) {
             console.warn('[Fingerprint] failed to generate fingerprint', err);
           }
