@@ -21,12 +21,18 @@ const FAQ = dynamic(() => import("@/components/FAQ"), {
   loading: () => <div className="w-full h-96" />,
 });
 
+const WhyChooseUs = dynamic(() => import("@/components/WhyChooseUs"), {
+  loading: () => <div className="w-full h-96" />,
+});
+
 export default function Home() {
   return (
     <div className="relative min-h-screen text-white overflow-x-hidden">
       <VideoMetricsBackground />
       
       <CommunityHighlights />
+
+      <WhyChooseUs />
       
       <HowItWorks />
 
