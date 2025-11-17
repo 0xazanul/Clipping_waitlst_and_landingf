@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import PostHogInit from "@/components/PostHogInit";
+import Navbar from "@/components/Navbar";
 
 const ppEditorial = localFont({
   src: [
@@ -71,6 +72,7 @@ export default function RootLayout({
         ></div>
 
         <div className="relative">
+          <Navbar />
           <div className="relative z-20">
             <PostHogInit />
             {children}
